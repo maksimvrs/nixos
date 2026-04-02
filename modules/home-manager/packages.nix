@@ -1,12 +1,8 @@
 # modules/home-manager/packages.nix
-{ pkgs, zenBrowserPackages, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
-    # Browser
-    zenBrowserPackages.default
-
     # Editors & IDEs
     neovim
-    code-cursor-fhs  # Cursor AI editor (FHS wrapper for extension support)
     # claude-desktop  # Claude desktop — verify package name: nix search nixpkgs claude-desktop
 
     # Development
