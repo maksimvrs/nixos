@@ -4,8 +4,14 @@
     # Browser
     zenBrowserPackages.default
 
-    # Editor
+    # Editors & IDEs
     neovim
+    code-cursor-fhs  # Cursor AI editor (FHS wrapper for extension support)
+    # claude-desktop  # Claude desktop — verify package name: nix search nixpkgs claude-desktop
+
+    # Development
+    python3
+    docker-compose
 
     # CLI essentials
     btop
@@ -25,5 +31,13 @@
     # Misc
     wget
     curl
+
+    # Communication
+    telegram-desktop
+    slack
+
+    # Productivity
+    bitwarden-desktop
+    sublime-merge
   ];
 }

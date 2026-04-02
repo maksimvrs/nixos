@@ -9,6 +9,7 @@
     ../../modules/nixos/fonts.nix
     ../../modules/nixos/desktop.nix
     ../../modules/nixos/packages.nix
+    ../../modules/nixos/docker.nix
   ];
 
   system.stateVersion = variables.stateVersion;
