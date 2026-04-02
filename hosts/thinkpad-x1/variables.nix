@@ -2,7 +2,7 @@
 {
   username    = "maksim";
   hostname    = "maksim-pc";
-  timezone    = "Asia/Almaty";
+  timezone    = "Asia/Ho_Chi_Minh";
   gitName     = "Maksim Vorontsov";
   gitEmail    = "maksim.vorontsov@zemomedia.com";
   # WARNING: stateVersion must never be changed after the first install.
