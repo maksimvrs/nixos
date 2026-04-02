@@ -5,7 +5,7 @@
     userName  = variables.gitName;
     userEmail = variables.gitEmail;
     extraConfig = {
-      init.defaultBranch = "main";
+      init.defaultBranch = "master";
       pull.rebase        = true;
     };
     includes = [
