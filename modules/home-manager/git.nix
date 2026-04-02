@@ -11,7 +11,7 @@
     includes = [
       {
         condition = "gitdir:~/zeustrack/";
-        contents.user.email = variables.gitWorkEmail;
+        contents.user.email = variables.gitZeustrackEmail;
       }
     ];
   };
