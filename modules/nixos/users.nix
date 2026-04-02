@@ -4,8 +4,8 @@
 
   users.users.${variables.username} = {
     isNormalUser = true;
-    description  = variables.username;
-    extraGroups  = [ "wheel" "networkmanager" "audio" "video" "docker" ];
+    description  = variables.gitName;
+    extraGroups  = [ "wheel" "networkmanager" "audio" "video" ];
     shell        = pkgs.zsh;
   };
 }

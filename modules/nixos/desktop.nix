@@ -13,32 +13,21 @@
     alsa.enable       = true;
     alsa.support32Bit = true;
     pulse.enable      = true;
-    wireplumber.enable = true;
+    wireplumber.enable = true; # explicit — default but stated for clarity
   };
   services.pulseaudio.enable = false;
   security.rtkit.enable      = true;
 
-  # Bluetooth
+  # Bluetooth — blueman provides a system tray applet useful alongside KDE BlueDevil
   hardware.bluetooth = {
-    enable        = true;
-    powerOnBoot   = true;
+    enable      = true;
+    powerOnBoot = true;
   };
   services.blueman.enable = true;
 
   # XDG portals (required for Plasma/Wayland apps)
   xdg.portal = {
-    enable      = true;
+    enable       = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-kde ];
   };
-
-  environment.systemPackages = with pkgs; [
-    git
-    neovim
-    wget
-    curl
-    ripgrep
-    fd
-    killall
-    gnumake
-  ];
 }
