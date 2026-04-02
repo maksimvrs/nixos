@@ -1,0 +1,15 @@
+# hosts/maksim-pc/default.nix
+{ variables, ... }: {
+  imports = [
+    ../../modules/nixos/boot.nix
+    ../../modules/nixos/nix.nix
+    ../../modules/nixos/networking.nix
+    ../../modules/nixos/locale.nix
+    ../../modules/nixos/users.nix
+    ../../modules/nixos/fonts.nix
+    ../../modules/nixos/desktop.nix
+    ../../modules/nixos/packages.nix
+  ];
+
+  system.stateVersion = variables.stateVersion;
+}
