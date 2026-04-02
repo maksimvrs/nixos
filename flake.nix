@@ -19,7 +19,7 @@
   outputs = { self, nixpkgs, home-manager, zen-browser, ... }:
   let
     system = "x86_64-linux";
-    variables = import ./hosts/maksim-pc/variables.nix;
+    variables = import ./hosts/thinkpad-x1/variables.nix;
     zenBrowserPackages = zen-browser.packages.${system};
   in {
     nixosConfigurations.${variables.hostname} = nixpkgs.lib.nixosSystem {
@@ -30,8 +30,8 @@
       };
 
       modules = [
-        ./hosts/maksim-pc/default.nix
-        ./hosts/maksim-pc/hardware-configuration.nix
+        ./hosts/thinkpad-x1/default.nix
+        ./hosts/thinkpad-x1/hardware-configuration.nix
 
         home-manager.nixosModules.home-manager
         {

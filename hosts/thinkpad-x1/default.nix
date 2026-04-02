@@ -1,4 +1,4 @@
-# hosts/maksim-pc/default.nix
+# hosts/thinkpad-x1/default.nix
 { variables, ... }: {
   imports = [
     ../../modules/nixos/boot.nix

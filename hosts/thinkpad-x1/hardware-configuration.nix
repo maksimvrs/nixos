@@ -1,7 +1,7 @@
-# hosts/maksim-pc/hardware-configuration.nix
+# hosts/thinkpad-x1/hardware-configuration.nix
 # This file is a placeholder.
 # Generate the real one on the target machine with:
-#   sudo nixos-generate-config --show-hardware-config > hosts/maksim-pc/hardware-configuration.nix
+#   sudo nixos-generate-config --show-hardware-config > hosts/thinkpad-x1/hardware-configuration.nix
 {
   config,
   lib,
