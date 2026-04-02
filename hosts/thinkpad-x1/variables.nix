@@ -1,7 +1,7 @@
 # hosts/thinkpad-x1/variables.nix
 {
   username    = "maksim";
-  hostname    = "thinkpad-x1";
+  hostname    = "maksim-pc";
   timezone    = "Asia/Almaty";
   gitName     = "Maksim Vorontsov";
   gitEmail    = "maksim.vorontsov@zemomedia.com";
