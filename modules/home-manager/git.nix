@@ -8,5 +8,11 @@
       init.defaultBranch = "main";
       pull.rebase        = true;
     };
+    includes = [
+      {
+        condition = "gitdir:~/zeustrack/";
+        contents.user.email = variables.gitWorkEmail;
+      }
+    ];
   };
 }
