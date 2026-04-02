@@ -14,4 +14,9 @@
   };
 
   programs.home-manager.enable = true;
+
+  systemd.user.tmpfiles.rules = [
+    "d %h/projects  0755 - - -"
+    "d %h/zeustrack 0755 - - -"
+  ];
 }
