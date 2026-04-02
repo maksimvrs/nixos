@@ -8,7 +8,7 @@
     autocd            = true;
 
     shellAliases = {
-      nix-switch = "sudo nixos-rebuild switch --flake .#${variables.hostname}";
+      nix-switch = "sudo nixos-rebuild switch --flake /home/${variables.username}/projects/nixos-config#${variables.hostname}";
       ls         = "eza";
       ll         = "eza -la";
       cat        = "bat";
@@ -16,14 +16,9 @@
 
     oh-my-zsh = {
       enable  = true;
-      plugins = [ "git" "docker" "fzf" ];
+      plugins = [ "git" "fzf" ];
       theme   = "robbyrussell";
     };
-
-    initContent = ''
-      eval "$(starship init zsh)"
-      eval "$(direnv hook zsh)"
-    '';
   };
 
   programs.starship = {
@@ -40,6 +35,6 @@
     EDITOR  = "nvim";
     VISUAL  = "nvim";
     TERM    = "kitty";
-    BROWSER = "zen";
+    BROWSER = "zen-browser";
   };
 }

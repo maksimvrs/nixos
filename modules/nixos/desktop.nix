@@ -1,5 +1,5 @@
 # modules/nixos/desktop.nix
-{ pkgs, ... }: {
+{ ... }: {
   services.desktopManager.plasma6.enable = true;
 
   services.displayManager.sddm = {
@@ -18,16 +18,9 @@
   services.pulseaudio.enable = false;
   security.rtkit.enable      = true;
 
-  # Bluetooth — blueman provides a system tray applet useful alongside KDE BlueDevil
+  # Bluetooth — BlueDevil (KDE's native manager) is enabled by plasma6
   hardware.bluetooth = {
     enable      = true;
     powerOnBoot = true;
-  };
-  services.blueman.enable = true;
-
-  # XDG portals (required for Plasma/Wayland apps)
-  xdg.portal = {
-    enable       = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-kde ];
   };
 }
