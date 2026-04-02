@@ -20,14 +20,13 @@
   let
     system = "x86_64-linux";
     variables = import ./hosts/maksim-pc/variables.nix;
+    zenBrowserPackages = zen-browser.packages.${system};
   in {
     nixosConfigurations.${variables.hostname} = nixpkgs.lib.nixosSystem {
       inherit system;
 
       specialArgs = {
-        inherit variables;
-        inherit (nixpkgs) lib;
-        zen-browser-packages = zen-browser.packages.${system};
+        inherit variables zenBrowserPackages;
       };
 
       modules = [
@@ -40,8 +39,7 @@
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "backup";
           home-manager.extraSpecialArgs = {
-            inherit variables;
-            zen-browser-packages = zen-browser.packages.${system};
+            inherit variables zenBrowserPackages;
           };
           home-manager.users.${variables.username} = import ./home/maksim.nix;
         }
