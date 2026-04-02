@@ -1,6 +1,12 @@
-# modules/home-manager/tools.nix
-{ pkgs, ... }: {
+# modules/home-manager/packages.nix
+{ pkgs, zenBrowserPackages, ... }: {
   home.packages = with pkgs; [
+    # Browser
+    zenBrowserPackages.default
+
+    # Editor
+    neovim
+
     # CLI essentials
     btop
     fzf

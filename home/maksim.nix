@@ -1,12 +1,10 @@
 # home/maksim.nix
 { variables, ... }: {
   imports = [
+    ../modules/home-manager/packages.nix
     ../modules/home-manager/shell.nix
     ../modules/home-manager/git.nix
-    ../modules/home-manager/terminal.nix
-    ../modules/home-manager/editor.nix
-    ../modules/home-manager/browser.nix
-    ../modules/home-manager/tools.nix
+    ../modules/home-manager/kitty.nix
   ];
 
   home = {
