@@ -10,6 +10,7 @@
     ../../modules/nixos/desktop.nix
     ../../modules/nixos/packages.nix
     ../../modules/nixos/docker.nix
+    ../../modules/nixos/keyboard.nix
   ];
 
   system.stateVersion = variables.stateVersion;
