@@ -1,10 +1,11 @@
 # modules/home-manager/shell.nix
-{ variables, config, ... }: {
+{ variables, config, pkgs, ... }: {
   programs.zsh = {
     enable            = true;
     dotDir            = "${config.xdg.configHome}/zsh";
     enableCompletion  = true;
     autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
     autocd            = true;
 
     shellAliases = {
@@ -16,6 +17,13 @@
       plugins = [ "git" "fzf" ];
       theme   = "robbyrussell";
     };
+
+    plugins = [
+      {
+        name = "you-should-use";
+        src = "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use";
+      }
+    ];
   };
 
   programs.starship = {
@@ -27,6 +35,8 @@
     enableZshIntegration  = true;
     nix-direnv.enable     = true;
   };
+
+  home.packages = [ pkgs.zsh-completions ];
 
   home.sessionVariables = {
     EDITOR  = "nvim";
