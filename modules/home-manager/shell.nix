@@ -42,6 +42,6 @@
     EDITOR  = "nvim";
     VISUAL  = "nvim";
     TERM    = "kitty";
-    BROWSER = "zen-browser";
+    BROWSER = "zen-beta";
   };
 }
