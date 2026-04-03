@@ -1,10 +1,10 @@
 # modules/home-manager/git.nix
 { variables, ... }: {
   programs.git = {
-    enable    = true;
-    userName  = variables.gitName;
-    userEmail = variables.gitEmail;
-    extraConfig = {
+    enable = true;
+    settings = {
+      user.name          = variables.gitName;
+      user.email         = variables.gitEmail;
       init.defaultBranch = "master";
       pull.rebase        = true;
     };

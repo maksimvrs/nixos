@@ -3,7 +3,7 @@
   programs.vscode = {
     enable    = true;
     package   = pkgs.code-cursor;
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       ms-python.python
     ];
   };
