@@ -55,10 +55,13 @@
   # GeoClue2 — location provider for gammastep etc.
   services.geoclue2.enable = true;
 
-  # GNOME Keyring — secret agent for NetworkManager password storage.
-  # Without this, NM cannot save WiFi passwords outside of KDE.
+  # GNOME Keyring — secret agent for NetworkManager passwords & SSH keys.
+  # PAM integration unlocks the keyring at login; SSH component caches
+  # key passphrases so they are entered only once per session.
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
+
+  programs.ssh.startAgent = false; # SSH agent provided by GNOME Keyring
 
   # Bluetooth — BlueDevil (KDE's native manager) is enabled by plasma6
   hardware.bluetooth = {
