@@ -5,6 +5,7 @@
     ../modules/home-manager/neovim.nix
     ../modules/home-manager/shell.nix
     ../modules/home-manager/git.nix
+    ../modules/home-manager/ssh.nix
     ../modules/home-manager/kitty.nix
     ../modules/home-manager/cursor.nix
     ../modules/home-manager/zen-browser.nix
