@@ -44,7 +44,7 @@
     };
     enabledPlugins = {
       "superpowers@superpowers-marketplace" = true;
-      "claude-hud@claude-hud-marketplace" = true;
+      "claude-hud@claude-hud" = true;
     };
     extraKnownMarketplaces = {
       superpowers-marketplace = {
@@ -53,7 +53,7 @@
           repo   = "obra/superpowers-marketplace";
         };
       };
-      claude-hud-marketplace = {
+      claude-hud = {
         source = {
           source = "github";
           repo   = "jarrodwatts/claude-hud";
