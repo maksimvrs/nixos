@@ -1,5 +1,5 @@
 # modules/home-manager/claude.nix
-{ pkgs, config, lib, ... }: {
+{ pkgs, config, ... }: {
   home.packages = [ pkgs.claude-code ];
 
   home.file.".claude/settings.json".text = builtins.toJSON {

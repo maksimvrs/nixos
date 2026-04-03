@@ -24,9 +24,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    claude-code.url = "github:sadjow/claude-code-nix";
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, firefox-addons, sops-nix, ... }:
+  outputs = { self, nixpkgs, home-manager, zen-browser, firefox-addons, sops-nix, claude-code, ... }:
   let
     system        = "x86_64-linux";
     variables     = import ./hosts/thinkpad-x1/variables.nix;
@@ -40,6 +42,8 @@
       };
 
       modules = [
+        { nixpkgs.overlays = [ claude-code.overlays.default ]; }
+
         ./hosts/thinkpad-x1/default.nix
         ./hosts/thinkpad-x1/hardware-configuration.nix
 
