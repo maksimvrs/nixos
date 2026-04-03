@@ -5,6 +5,7 @@
     package   = pkgs.code-cursor;
     profiles.default.extensions = with pkgs.vscode-extensions; [
       ms-python.python
+      vscodevim.vim
     ];
   };
 }

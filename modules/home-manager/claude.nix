@@ -34,6 +34,7 @@
         "Bash(kill:*)"
         "Bash(docker:*)"
         "Bash(docker-compose:*)"
+        "Bash(nix:*)"
         "Edit"
         "Write"
         "MultiEdit"
@@ -42,7 +43,7 @@
       ];
     };
     enabledPlugins = {
-      "superpowers@claude-plugins-official" = true;
+      "superpowers@superpowers-marketplace" = true;
     };
     extraKnownMarketplaces = {
       superpowers-marketplace = {

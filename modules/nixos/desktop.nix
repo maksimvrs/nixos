@@ -13,10 +13,26 @@
     extraPackages = p: with p; [ qtile-extras ];
   };
 
-  # Disable natural (reversed) scrolling
+  # Disable X11 — we only use Wayland
+  services.xserver.enable = false;
+
+  # XWayland — needed for X11-only apps (some tray icons)
+  programs.xwayland.enable = true;
+
+  # XDG portals — required for flameshot screen capture on Wayland
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+  # portal-wlr only activates for "sway" — must masquerade
+  environment.sessionVariables.XDG_CURRENT_DESKTOP = "sway";
+
+  # Touchpad & mouse
   services.libinput = {
     mouse.naturalScrolling = true;
     touchpad.naturalScrolling = true;
+    touchpad.tapping = true;
   };
 
   # PipeWire audio
@@ -29,6 +45,14 @@
   };
   services.pulseaudio.enable = false;
   security.rtkit.enable      = true;
+
+  # GeoClue2 — location provider for gammastep etc.
+  services.geoclue2.enable = true;
+
+  # GNOME Keyring — secret agent for NetworkManager password storage.
+  # Without this, NM cannot save WiFi passwords outside of KDE.
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
 
   # Bluetooth — BlueDevil (KDE's native manager) is enabled by plasma6
   hardware.bluetooth = {
