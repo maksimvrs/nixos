@@ -7,6 +7,12 @@
     wayland.enable = true;
   };
 
+  # Disable natural (reversed) scrolling
+  services.libinput = {
+    mouse.naturalScrolling = false;
+    touchpad.naturalScrolling = false;
+  };
+
   # PipeWire audio
   services.pipewire = {
     enable            = true;

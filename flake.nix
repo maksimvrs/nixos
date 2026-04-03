@@ -83,8 +83,6 @@
         ./hosts/thinkpad-x1/default.nix
         ./hosts/thinkpad-x1/hardware-configuration.nix
 
-        sops-nix.nixosModules.sops
-
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

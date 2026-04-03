@@ -11,8 +11,6 @@
     ../../modules/nixos/packages.nix
     ../../modules/nixos/docker.nix
     ../../modules/nixos/keyboard.nix
-    ../../modules/nixos/sops.nix
-    ../../modules/nixos/vpn.nix
   ];
 
   system.stateVersion = variables.stateVersion;
