@@ -35,6 +35,7 @@
     # Productivity
     bitwarden-desktop
     sublime-merge
+    glab
 
     # File manager
     nautilus

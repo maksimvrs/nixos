@@ -1,6 +1,7 @@
 # modules/nixos/networking.nix
 { variables, pkgs, ... }: {
   networking.hostName = variables.hostname;
+  environment.systemPackages = [ pkgs.openvpn ];
   networking.networkmanager = {
     enable = true;
     plugins = [ pkgs.networkmanager-openvpn ];
