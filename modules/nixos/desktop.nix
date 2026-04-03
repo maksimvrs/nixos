@@ -1,5 +1,5 @@
 # modules/nixos/desktop.nix
-{ ... }: {
+{ pkgs, ... }: {
   services.desktopManager.plasma6.enable = true;
 
   services.displayManager.sddm = {
@@ -7,10 +7,16 @@
     wayland.enable = true;
   };
 
+  # Qtile (Wayland session, selectable from SDDM)
+  services.xserver.windowManager.qtile = {
+    enable = true;
+    extraPackages = p: with p; [ qtile-extras ];
+  };
+
   # Disable natural (reversed) scrolling
   services.libinput = {
-    mouse.naturalScrolling = false;
-    touchpad.naturalScrolling = false;
+    mouse.naturalScrolling = true;
+    touchpad.naturalScrolling = true;
   };
 
   # PipeWire audio

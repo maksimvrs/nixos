@@ -8,6 +8,7 @@
     ../modules/home-manager/cursor.nix
     ../modules/home-manager/zen-browser.nix
     ../modules/home-manager/claude.nix
+    ../modules/home-manager/qtile.nix
   ];
 
   home = {

@@ -5,7 +5,7 @@
     shellIntegration.enableZshIntegration = true;
     font = {
       name = "FiraCode Nerd Font";
-      size = 13;
+      size = 12;
     };
     settings = {
       window_padding_width   = 8;
