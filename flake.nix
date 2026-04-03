@@ -19,12 +19,17 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, firefox-addons, ... }:
+  outputs = { self, nixpkgs, home-manager, zen-browser, firefox-addons, agenix, ... }:
   let
-    system    = "x86_64-linux";
-    variables = import ./hosts/thinkpad-x1/variables.nix;
+    system        = "x86_64-linux";
+    variables     = import ./hosts/thinkpad-x1/variables.nix;
     firefoxAddons = firefox-addons.packages.${system};
   in {
     nixosConfigurations.${variables.hostname} = nixpkgs.lib.nixosSystem {
@@ -37,6 +42,8 @@
       modules = [
         ./hosts/thinkpad-x1/default.nix
         ./hosts/thinkpad-x1/hardware-configuration.nix
+
+        agenix.nixosModules.default
 
         home-manager.nixosModules.home-manager
         {
