@@ -40,7 +40,7 @@
       specialArgs = { inherit variables; };
 
       modules = [
-        "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-plasma6.nix"
+        "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-plasma6.nix"
 
         { nixpkgs.overlays = [ claude-code.overlays.default ]; }
 
