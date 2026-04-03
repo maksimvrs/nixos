@@ -8,22 +8,20 @@
       size = 12;
     };
     settings = {
-      window_padding_width   = 8;
-      scrollback_lines       = 10000;
-      enable_audio_bell      = false;
+      window_padding_width    = 8;
+      scrollback_lines        = 10000;
+      enable_audio_bell       = true;
       confirm_os_window_close = 0;
     };
     themeFile = "Nord";
 
-    # Keybindings that work in Russian layout (Cyrillic keysyms)
-    keybindings = {
-      "ctrl+shift+Cyrillic_es" = "copy_to_clipboard";           # ctrl+shift+c
-      "ctrl+shift+Cyrillic_em" = "paste_from_clipboard";        # ctrl+shift+v
-      "ctrl+shift+Cyrillic_te" = "new_tab";                     # ctrl+shift+t
-      "ctrl+shift+Cyrillic_ze" = "close_tab";                   # ctrl+shift+w  (на русской w→ц, но close обычно q/w)
-      "ctrl+shift+Cyrillic_tse" = "close_tab";                  # ctrl+shift+w (ц)
-      "ctrl+shift+Cyrillic_ef" = "show_scrollback";             # ctrl+shift+f  (а→f)
-      "ctrl+shift+Cyrillic_a" = "show_scrollback";              # ctrl+shift+a
-    };
+    keybindings = {};
+
+    extraConfig = ''
+      map ctrl+shift+с copy_to_clipboard
+      map ctrl+shift+м paste_from_clipboard
+      map ctrl+shift+е new_tab
+      map ctrl+shift+ц close_tab
+    '';
   };
 }

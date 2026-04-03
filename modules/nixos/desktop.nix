@@ -1,5 +1,11 @@
 # modules/nixos/desktop.nix
 { pkgs, ... }: {
+  # Make .desktop files and MIME types from all packages visible to all apps
+  environment.pathsToLink = [
+    "/share/applications"
+    "/share/mime"
+  ];
+
   services.desktopManager.plasma6.enable = true;
 
   services.displayManager.sddm = {

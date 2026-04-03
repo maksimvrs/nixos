@@ -2,6 +2,7 @@
 { variables, ... }: {
   imports = [
     ../modules/home-manager/packages.nix
+    ../modules/home-manager/neovim.nix
     ../modules/home-manager/shell.nix
     ../modules/home-manager/git.nix
     ../modules/home-manager/kitty.nix
@@ -12,6 +13,7 @@
     ../modules/home-manager/gammastep.nix
     ../modules/home-manager/wofi.nix
     ../modules/home-manager/qtile.nix
+    ../modules/home-manager/xdg.nix
   ];
 
   home = {

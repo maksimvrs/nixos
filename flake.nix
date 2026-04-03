@@ -20,15 +20,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     claude-code.url = "github:sadjow/claude-code-nix";
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, firefox-addons, sops-nix, claude-code, ... }:
+  outputs = { self, nixpkgs, home-manager, zen-browser, firefox-addons, claude-code, ... }:
   let
     system        = "x86_64-linux";
     variables     = import ./hosts/thinkpad-x1/variables.nix;
@@ -46,7 +41,6 @@
 
         # boot.nix excluded — ISO uses its own bootloader
         # hardware-configuration.nix excluded — not applicable for ISO
-        # sops.nix + vpn.nix excluded — no age key available on live ISO
         ./modules/nixos/nix.nix
         ./modules/nixos/networking.nix
         ./modules/nixos/locale.nix

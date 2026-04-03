@@ -2,7 +2,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     # Editors & IDEs
-    neovim
     # claude-desktop  # Claude desktop — verify package name: nix search nixpkgs claude-desktop
 
     # Development
@@ -36,5 +35,12 @@
     # Productivity
     bitwarden-desktop
     sublime-merge
+
+    # File manager
+    nautilus
+
+    # Media
+    kdePackages.gwenview  # image viewer (KDE)
+    shared-mime-info   # MIME type database
   ];
 }

@@ -21,3 +21,11 @@ def autostart():
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
         )
+
+
+@hook.subscribe.client_managed
+def focus_new_window(client):
+    """Switch to the group of a newly opened window and focus it."""
+    if client.group:
+        client.group.toscreen()
+        client.focus()
