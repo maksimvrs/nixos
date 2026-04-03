@@ -1,0 +1,26 @@
+# .sops.yaml
+# Defines which age keys can encrypt/decrypt which files.
+#
+# HOW TO SET UP:
+#   1. Generate your personal age key (once, store in Bitwarden):
+#      age-keygen -o ~/.config/sops/age/keys.txt
+#      → prints: Public key: age1xxxxxxxx...
+#
+#   2. Replace the placeholder below with your public key.
+#
+#   3. Create and encrypt secrets:
+#      nix shell nixpkgs#sops --command sops secrets/secrets.yaml
+#
+# FRESH INSTALL:
+#   Copy your age key to the new machine before nixos-install:
+#   mkdir -p /mnt/var/lib/sops-nix
+#   cp ~/.config/sops/age/keys.txt /mnt/var/lib/sops-nix/key.txt
+
+keys:
+  - &maksim age1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  # TODO: replace
+
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+      - age:
+          - *maksim

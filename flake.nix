@@ -20,13 +20,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    agenix = {
-      url = "github:ryantm/agenix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, firefox-addons, agenix, ... }:
+  outputs = { self, nixpkgs, home-manager, zen-browser, firefox-addons, sops-nix, ... }:
   let
     system        = "x86_64-linux";
     variables     = import ./hosts/thinkpad-x1/variables.nix;
@@ -43,7 +43,7 @@
         ./hosts/thinkpad-x1/default.nix
         ./hosts/thinkpad-x1/hardware-configuration.nix
 
-        agenix.nixosModules.default
+        sops-nix.nixosModules.sops
 
         home-manager.nixosModules.home-manager
         {

@@ -7,6 +7,6 @@
     description        = variables.gitName;
     extraGroups        = [ "wheel" "networkmanager" "audio" "video" ];
     shell              = pkgs.zsh;
-    hashedPasswordFile = config.age.secrets.maksim-password.path;
+    hashedPasswordFile = config.sops.secrets.maksim-password.path;
   };
 }
