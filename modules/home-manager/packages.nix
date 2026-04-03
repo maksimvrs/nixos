@@ -8,6 +8,7 @@
     python3
     uv
     docker-compose
+    devenv
 
     # CLI essentials
     btop
