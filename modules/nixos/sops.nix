@@ -11,9 +11,6 @@
     };
 
     secrets = {
-      maksim-password = {
-        neededForUsers = true;  # available before user creation on first boot
-      };
       jwi-ovpn = {
         owner = "root";
         mode  = "400";

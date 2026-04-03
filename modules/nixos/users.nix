@@ -1,12 +1,12 @@
 # modules/nixos/users.nix
-{ pkgs, config, variables, ... }: {
+{ pkgs, variables, ... }: {
   programs.zsh.enable = true;
 
   users.users.${variables.username} = {
-    isNormalUser       = true;
-    description        = variables.gitName;
-    extraGroups        = [ "wheel" "networkmanager" "audio" "video" ];
-    shell              = pkgs.zsh;
-    hashedPasswordFile = config.sops.secrets.maksim-password.path;
+    isNormalUser    = true;
+    description     = variables.gitName;
+    extraGroups     = [ "wheel" "networkmanager" "audio" "video" ];
+    shell           = pkgs.zsh;
+    initialPassword = "password";
   };
 }

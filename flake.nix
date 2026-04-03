@@ -34,6 +34,42 @@
     variables     = import ./hosts/thinkpad-x1/variables.nix;
     firefoxAddons = firefox-addons.packages.${system};
   in {
+    nixosConfigurations.iso = nixpkgs.lib.nixosSystem {
+      inherit system;
+
+      specialArgs = { inherit variables; };
+
+      modules = [
+        "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-plasma6.nix"
+
+        { nixpkgs.overlays = [ claude-code.overlays.default ]; }
+
+        # boot.nix excluded — ISO uses its own bootloader
+        # hardware-configuration.nix excluded — not applicable for ISO
+        # sops.nix + vpn.nix excluded — no age key available on live ISO
+        ./modules/nixos/nix.nix
+        ./modules/nixos/networking.nix
+        ./modules/nixos/locale.nix
+        ./modules/nixos/users.nix
+        ./modules/nixos/fonts.nix
+        ./modules/nixos/desktop.nix
+        ./modules/nixos/packages.nix
+        ./modules/nixos/keyboard.nix
+
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "backup";
+          home-manager.sharedModules = [ zen-browser.homeModules.beta ];
+          home-manager.extraSpecialArgs = {
+            inherit variables firefoxAddons;
+          };
+          home-manager.users.${variables.username} = import ./home/maksim.nix;
+        }
+      ];
+    };
+
     nixosConfigurations.${variables.hostname} = nixpkgs.lib.nixosSystem {
       inherit system;
 
