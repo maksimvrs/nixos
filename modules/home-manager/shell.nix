@@ -8,10 +8,7 @@
     autocd            = true;
 
     shellAliases = {
-      nix-switch = "sudo nixos-rebuild switch --flake /home/${variables.username}/projects/nixos-config#${variables.hostname}";
-      ls         = "eza";
-      ll         = "eza -la";
-      cat        = "bat";
+      nix-switch = "sudo nixos-rebuild switch --flake /etc/nixos#${variables.hostname}";
     };
 
     oh-my-zsh = {
