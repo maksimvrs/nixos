@@ -17,7 +17,7 @@
 #   cp ~/.config/sops/age/keys.txt /mnt/var/lib/sops-nix/key.txt
 
 keys:
-  - &maksim age1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  # TODO: replace
+  - &maksim age1q2wsqcdlpec08al78yan58mtu7s2khyra80zzuxjx76e72y2wszs28yt5e
 
 creation_rules:
   - path_regex: secrets/.*\.yaml$

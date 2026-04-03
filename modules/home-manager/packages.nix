@@ -7,6 +7,7 @@
 
     # Development
     python3
+    uv
     docker-compose
 
     # CLI essentials
