@@ -35,18 +35,19 @@ def make_separator():
 
 
 def get_vpn_status():
-    """Check for active VPN (wireguard or tun interfaces)."""
-    for interface_type in ("wireguard", "tun"):
-        try:
-            output = subprocess.check_output(
-                ["ip", "-brief", "link", "show", "type", interface_type],
-                stderr=subprocess.DEVNULL,
-                text=True,
-            ).strip()
-            if output:
-                return "🔒 ON"
-        except (subprocess.CalledProcessError, FileNotFoundError):
-            pass
+    """Check for active VPN connections via NetworkManager."""
+    try:
+        output = subprocess.check_output(
+            ["nmcli", "-t", "-f", "NAME,TYPE", "connection", "show", "--active"],
+            stderr=subprocess.DEVNULL,
+            text=True,
+        ).strip()
+        for line in output.splitlines():
+            name, conn_type = line.split(":", 1)
+            if "vpn" in conn_type or "wireguard" in conn_type or "tun" in conn_type:
+                return f"🔒 {name}"
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        pass
     return "🔓 OFF"
 
 

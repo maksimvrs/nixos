@@ -4,6 +4,19 @@ import os
 import subprocess
 
 from libqtile import hook
+from libqtile.backend.wayland.core import Core
+
+_original_handle_key = Core.handle_keyboard_key
+
+
+def _locked_handle_key(self, keysym, mask):
+    if self._locked:
+        return False
+    return _original_handle_key(self, keysym, mask)
+
+
+Core.handle_keyboard_key = _locked_handle_key
+
 
 @hook.subscribe.startup_once
 def autostart():

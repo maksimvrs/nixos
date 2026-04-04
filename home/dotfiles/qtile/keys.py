@@ -6,6 +6,7 @@ from libqtile.lazy import lazy
 from helpers import (
     brightness_down,
     brightness_up,
+    lock_screen,
     mic_mute,
     power_profile_cycle,
     volume_down,
@@ -76,6 +77,7 @@ keys = [
         desc="Screenshot full"),
 
     # ── Session ───────────────────────────────────────────────────────
+    Key([MOD], "x", lazy.function(lock_screen), desc="Lock screen"),
     Key([MOD], "q", lazy.window.kill(), desc="Kill window"),
     Key([MOD, "shift"], "r", lazy.reload_config(), desc="Reload config"),
     Key([MOD, "shift"], "e", lazy.shutdown(), desc="Exit qtile"),

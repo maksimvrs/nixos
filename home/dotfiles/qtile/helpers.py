@@ -8,6 +8,23 @@ MIC_NOTIFICATION_ID = "91191"
 BRIGHTNESS_NOTIFICATION_ID = "91192"
 POWER_PROFILE_NOTIFICATION_ID = "91193"
 
+
+# ── Screen Lock ─────────────────────────────────────────────────────────
+
+def lock_screen(qtile):
+    """Launch gtklock and block Qtile keybindings while locked."""
+    import threading
+
+    core = qtile.core
+    core._locked = True
+
+    def _wait():
+        proc = subprocess.Popen(["gtklock"])
+        proc.wait()
+        core._locked = False
+
+    threading.Thread(target=_wait, daemon=True).start()
+
 POWER_PROFILES = ["power-saver", "balanced", "performance"]
 POWER_PROFILE_ICONS = {
     "power-saver": "🔋",
@@ -108,8 +125,14 @@ def brightness_down(qtile):
 
 def get_power_profile():
     """Get current power profile name."""
-    result = run_command("powerprofilesctl", "get")
-    return result.stdout.strip()
+    try:
+        result = subprocess.run(
+            ("powerprofilesctl", "get"),
+            capture_output=True, text=True, timeout=2,
+        )
+        return result.stdout.strip()
+    except (subprocess.TimeoutExpired, Exception):
+        return ""
 
 
 def power_profile_cycle(qtile):

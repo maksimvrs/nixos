@@ -63,6 +63,10 @@
 
   programs.ssh.startAgent = false; # SSH agent provided by GNOME Keyring
 
+  # gtklock — Wayland screen locker
+  security.pam.services.gtklock = {};
+  environment.systemPackages = [ pkgs.gtklock ];
+
   # Power profiles (performance / balanced / power-saver)
   services.power-profiles-daemon.enable = true;
 
