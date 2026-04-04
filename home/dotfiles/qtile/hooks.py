@@ -5,7 +5,6 @@ import subprocess
 
 from libqtile import hook
 
-
 @hook.subscribe.startup_once
 def autostart():
     """Start background services once on first login."""

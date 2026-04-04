@@ -45,10 +45,10 @@ keys = [
     Key([MOD, "shift"], "k", lazy.layout.shuffle_up(), desc="Move up"),
 
     # ── Resize windows ────────────────────────────────────────────────
-    Key([MOD, "control"], "h", lazy.layout.grow_left(), desc="Grow left"),
-    Key([MOD, "control"], "l", lazy.layout.grow_right(), desc="Grow right"),
-    Key([MOD, "control"], "j", lazy.layout.grow_down(), desc="Grow down"),
-    Key([MOD, "control"], "k", lazy.layout.grow_up(), desc="Grow up"),
+    Key([MOD, "control"], "h", lazy.layout.shrink_main(), desc="Resize left"),
+    Key([MOD, "control"], "l", lazy.layout.grow_main(), desc="Resize right"),
+    Key([MOD, "control"], "j", lazy.layout.grow(), desc="Resize down"),
+    Key([MOD, "control"], "k", lazy.layout.shrink(), desc="Resize up"),
     Key([MOD], "equal", lazy.layout.normalize(), desc="Reset sizes"),
 
     # ── Layouts ───────────────────────────────────────────────────────
