@@ -11,6 +11,7 @@
     ../../modules/nixos/packages.nix
     ../../modules/nixos/docker.nix
     ../../modules/nixos/keyboard.nix
+    ../../modules/nixos/ollama.nix
   ];
 
   system.stateVersion = variables.stateVersion;

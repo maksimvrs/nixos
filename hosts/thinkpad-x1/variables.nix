@@ -6,6 +6,7 @@
   gitName      = "Maksim Vorontsov";
   gitEmail     = "social.maksim.vrs@gmail.com";
   gitZeustrackEmail = "maksim.vorontsov@zemomedia.com";
+  ollamaModel  = "qwen2.5-coder:7b";
   # WARNING: stateVersion must never be changed after the first install.
   # Changing it can silently corrupt stateful services.
   stateVersion = "25.05";

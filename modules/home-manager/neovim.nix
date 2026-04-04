@@ -1,5 +1,5 @@
 # modules/home-manager/neovim.nix
-{ pkgs, ... }:
+{ pkgs, variables, ... }:
 let
   treesitterParsers = pkgs.symlinkJoin {
     name = "treesitter-parsers";

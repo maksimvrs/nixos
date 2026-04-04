@@ -15,6 +15,7 @@
     ../modules/home-manager/wofi.nix
     ../modules/home-manager/qtile.nix
     ../modules/home-manager/xdg.nix
+    ../modules/home-manager/opencode.nix
   ];
 
   home = {
