@@ -63,6 +63,9 @@
 
   programs.ssh.startAgent = false; # SSH agent provided by GNOME Keyring
 
+  # Power profiles (performance / balanced / power-saver)
+  services.power-profiles-daemon.enable = true;
+
   # Bluetooth — BlueDevil (KDE's native manager) is enabled by plasma6
   hardware.bluetooth = {
     enable      = true;

@@ -6,6 +6,7 @@ from libqtile import bar, widget
 from libqtile.config import Screen
 from libqtile.lazy import lazy
 
+from helpers import get_power_profile, POWER_PROFILE_ICONS
 from theme import colors, widget_defaults
 
 extension_defaults = widget_defaults.copy()
@@ -99,6 +100,12 @@ screens = [
                     format="☀ {percent:2.0%}",
                     foreground=colors["yellow"],
                     change_command=None,
+                ),
+                make_separator(),
+                widget.GenPollText(
+                    func=lambda: POWER_PROFILE_ICONS.get(get_power_profile(), "⚡"),
+                    update_interval=1,
+                    foreground=colors["orange"],
                 ),
                 make_separator(),
                 widget.Battery(

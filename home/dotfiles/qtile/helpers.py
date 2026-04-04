@@ -6,6 +6,14 @@ NOTIFICATION_TIMEOUT = "1500"
 VOLUME_NOTIFICATION_ID = "91190"
 MIC_NOTIFICATION_ID = "91191"
 BRIGHTNESS_NOTIFICATION_ID = "91192"
+POWER_PROFILE_NOTIFICATION_ID = "91193"
+
+POWER_PROFILES = ["power-saver", "balanced", "performance"]
+POWER_PROFILE_ICONS = {
+    "power-saver": "🔋",
+    "balanced": "⚖",
+    "performance": "🚀",
+}
 
 
 def run_command(*command):
@@ -94,3 +102,28 @@ def brightness_up(qtile):
 def brightness_down(qtile):
     run_command("brightnessctl", "set", "5%-")
     _notify_brightness()
+
+
+# ── Power Profile ───────────────────────────────────────────────────────
+
+def get_power_profile():
+    """Get current power profile name."""
+    result = run_command("powerprofilesctl", "get")
+    return result.stdout.strip()
+
+
+def power_profile_cycle(qtile):
+    """Cycle to the next power profile and show notification."""
+    current = get_power_profile()
+    try:
+        idx = POWER_PROFILES.index(current)
+    except ValueError:
+        idx = 0
+    next_profile = POWER_PROFILES[(idx + 1) % len(POWER_PROFILES)]
+    run_command("powerprofilesctl", "set", next_profile)
+    icon = POWER_PROFILE_ICONS.get(next_profile, "⚡")
+    send_notification(
+        POWER_PROFILE_NOTIFICATION_ID,
+        f"{icon} Power Profile",
+        next_profile,
+    )

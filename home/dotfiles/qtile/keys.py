@@ -7,6 +7,7 @@ from helpers import (
     brightness_down,
     brightness_up,
     mic_mute,
+    power_profile_cycle,
     volume_down,
     volume_mute,
     volume_up,
@@ -90,6 +91,9 @@ keys = [
     # ── Brightness ────────────────────────────────────────────────────
     Key([], "XF86MonBrightnessUp", lazy.function(brightness_up), desc="Brightness up"),
     Key([], "XF86MonBrightnessDown", lazy.function(brightness_down), desc="Brightness down"),
+
+    # ── Power Profile ─────────────────────────────────────────────────
+    Key([MOD], "b", lazy.function(power_profile_cycle), desc="Cycle power profile"),
 ]
 
 # Duplicate letter-based bindings for Russian layout so keybindings
