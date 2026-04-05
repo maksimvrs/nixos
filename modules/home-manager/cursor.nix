@@ -3,9 +3,14 @@
   programs.vscode = {
     enable    = true;
     package   = pkgs.code-cursor;
-    profiles.default.extensions = with pkgs.vscode-extensions; [
-      ms-python.python
-      vscodevim.vim
-    ];
+    profiles.default = {
+      extensions = with pkgs.vscode-extensions; [
+        ms-python.python
+        vscodevim.vim
+      ];
+      userSettings = {
+        "workbench.colorTheme" = "Default Light Modern";
+      };
+    };
   };
 }
