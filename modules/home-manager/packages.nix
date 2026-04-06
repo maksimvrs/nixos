@@ -41,6 +41,7 @@
     sublime-merge
     glab
     beekeeper-studio
+    mongodb-compass
 
     # File manager
     nautilus
