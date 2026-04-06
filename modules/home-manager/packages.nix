@@ -20,6 +20,9 @@
     tldr
     ripgrep
     fd
+    nh
+    fastfetch
+    httpie
 
     # Archives
     zip
@@ -37,6 +40,7 @@
     bitwarden-desktop
     sublime-merge
     glab
+    beekeeper-studio
 
     # File manager
     nautilus
