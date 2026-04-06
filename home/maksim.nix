@@ -16,6 +16,7 @@
     ../modules/home-manager/qtile.nix
     ../modules/home-manager/xdg.nix
     ../modules/home-manager/opencode.nix
+    ../modules/home-manager/obs.nix
   ];
 
   home = {
