@@ -47,6 +47,7 @@
     nautilus
 
     # Media
+    obs-studio
     kdePackages.gwenview  # image viewer (KDE)
     shared-mime-info   # MIME type database
   ];
