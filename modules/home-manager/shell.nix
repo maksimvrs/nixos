@@ -10,6 +10,7 @@
 
     shellAliases = {
       nix-switch = "sudo nixos-rebuild switch --flake /etc/nixos#${variables.hostname}";
+      oil = "nvim -c Oil";
     };
 
     oh-my-zsh = {
