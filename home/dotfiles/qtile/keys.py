@@ -9,6 +9,7 @@ from helpers import (
     lock_screen,
     mic_mute,
     power_profile_cycle,
+    toggle_floating_centered,
     volume_down,
     volume_mute,
     volume_up,
@@ -55,7 +56,7 @@ keys = [
     # ── Layouts ───────────────────────────────────────────────────────
     Key([MOD], "Tab", lazy.next_layout(), desc="Next layout"),
     Key([MOD], "f", lazy.window.toggle_fullscreen(), desc="Fullscreen"),
-    Key([MOD, "shift"], "f", lazy.window.toggle_floating(), desc="Toggle floating"),
+    Key([MOD, "shift"], "f", lazy.function(toggle_floating_centered), desc="Toggle floating"),
 
     # ── Launch ────────────────────────────────────────────────────────
     Key([MOD], "Return", lazy.spawn(TERMINAL), desc="Terminal"),
@@ -66,7 +67,7 @@ keys = [
     Key([MOD], "v", lazy.spawn("copyq toggle"), desc="Clipboard history"),
 
     # ── Network ───────────────────────────────────────────────────────
-    Key([MOD], "n", lazy.spawn("nm-connection-editor"), desc="Network settings"),
+    Key([MOD], "n", lazy.spawn("kitty --title nmtui -e nmtui"), desc="Network settings"),
 
     # ── Screenshot (grim + slurp) ─────────────────────────────────────
     Key([], "Print",

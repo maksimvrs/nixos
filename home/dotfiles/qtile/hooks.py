@@ -6,16 +6,17 @@ import subprocess
 from libqtile import hook
 from libqtile.backend.wayland.core import Core
 
-_original_handle_key = Core.handle_keyboard_key
+# Guard against double-patching on config reload: save the real method
+# only once, so subsequent reloads don't wrap the wrapper.
+if not hasattr(Core, '_original_handle_keyboard_key'):
+    Core._original_handle_keyboard_key = Core.handle_keyboard_key
 
+    def _locked_handle_key(self, keysym, mask):
+        if getattr(self, '_locked', False):
+            return False
+        return Core._original_handle_keyboard_key(self, keysym, mask)
 
-def _locked_handle_key(self, keysym, mask):
-    if self._locked:
-        return False
-    return _original_handle_key(self, keysym, mask)
-
-
-Core.handle_keyboard_key = _locked_handle_key
+    Core.handle_keyboard_key = _locked_handle_key
 
 
 @hook.subscribe.startup_once

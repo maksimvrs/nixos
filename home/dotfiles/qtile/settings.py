@@ -31,6 +31,7 @@ floating_layout = layout.Floating(
         Match(title="CopyQ"),
         Match(wm_class="nm-connection-editor"),
         Match(wm_class=".nm-connection-editor-wrapped"),
+        Match(title="nmtui"),
     ],
     **layout_theme,
 )

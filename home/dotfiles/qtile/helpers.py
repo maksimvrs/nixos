@@ -1,4 +1,26 @@
-"""Helper functions for media keys with dunst notifications."""
+"""Helper functions for Qtile."""
+
+
+# ── Toggle Floating (centered) ────────────────────────────────────────────
+
+FLOATING_WIDTH = 1200
+FLOATING_HEIGHT = 800
+
+
+def toggle_floating_centered(qtile):
+    """Toggle floating with a default size, centered on screen."""
+    win = qtile.current_window
+    if not win:
+        return
+    if win.floating:
+        win.toggle_floating()
+    else:
+        win.toggle_floating()
+        screen = qtile.current_screen
+        win.set_size_floating(FLOATING_WIDTH, FLOATING_HEIGHT)
+        x = screen.x + (screen.width - FLOATING_WIDTH) // 2
+        y = screen.y + (screen.height - FLOATING_HEIGHT) // 2
+        win.set_position_floating(x, y)
 
 import subprocess
 
