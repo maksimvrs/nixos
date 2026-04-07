@@ -40,9 +40,10 @@
   home.packages = [ pkgs.zsh-completions ];
 
   home.sessionVariables = {
-    EDITOR  = "nvim";
-    VISUAL  = "nvim";
-    TERM    = "kitty";
-    BROWSER = "zen-beta";
+    EDITOR        = "nvim";
+    VISUAL        = "nvim";
+    TERM          = "kitty";
+    BROWSER       = "zen-beta";
+    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/gcr/ssh";
   };
 }

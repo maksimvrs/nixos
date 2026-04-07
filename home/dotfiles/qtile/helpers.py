@@ -7,6 +7,14 @@ FLOATING_WIDTH = 1200
 FLOATING_HEIGHT = 800
 
 
+def resize_and_center(win, screen, width=FLOATING_WIDTH, height=FLOATING_HEIGHT):
+    """Set window size and center it on the given screen."""
+    win.set_size_floating(width, height)
+    x = screen.x + (screen.width - width) // 2
+    y = screen.y + (screen.height - height) // 2
+    win.set_position_floating(x, y)
+
+
 def toggle_floating_centered(qtile):
     """Toggle floating with a default size, centered on screen."""
     win = qtile.current_window
@@ -16,11 +24,7 @@ def toggle_floating_centered(qtile):
         win.toggle_floating()
     else:
         win.toggle_floating()
-        screen = qtile.current_screen
-        win.set_size_floating(FLOATING_WIDTH, FLOATING_HEIGHT)
-        x = screen.x + (screen.width - FLOATING_WIDTH) // 2
-        y = screen.y + (screen.height - FLOATING_HEIGHT) // 2
-        win.set_position_floating(x, y)
+        resize_and_center(win, qtile.current_screen)
 
 import subprocess
 

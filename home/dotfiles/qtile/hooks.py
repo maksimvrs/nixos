@@ -6,6 +6,8 @@ import subprocess
 from libqtile import hook
 from libqtile.backend.wayland.core import Core
 
+from helpers import resize_and_center
+
 # Guard against double-patching on config reload: save the real method
 # only once, so subsequent reloads don't wrap the wrapper.
 if not hasattr(Core, '_original_handle_keyboard_key'):
@@ -34,6 +36,13 @@ def autostart():
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
         )
+
+
+@hook.subscribe.client_new
+def force_nmtui_size(client):
+    """Force nmtui to a fixed size every time it opens."""
+    if client.name == "nmtui":
+        resize_and_center(client, client.qtile.current_screen)
 
 
 @hook.subscribe.client_managed

@@ -63,6 +63,13 @@
 
   programs.ssh.startAgent = false; # SSH agent provided by GNOME Keyring
 
+  # Fingerprint authentication (ThinkPad X1 Carbon Gen 11)
+  services.fprintd.enable = true;
+  security.pam.services.sudo.fprintAuth = true;
+  security.pam.services.login.fprintAuth = true;
+  security.pam.services.sddm.fprintAuth = true;
+  security.pam.services.gtklock.fprintAuth = true;
+
   # gtklock — Wayland screen locker
   security.pam.services.gtklock = {};
   environment.systemPackages = [ pkgs.gtklock ];
