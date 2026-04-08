@@ -8,6 +8,7 @@
     python3
     uv
     docker-compose
+    lazydocker
     devenv
 
     # CLI essentials
