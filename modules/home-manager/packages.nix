@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     # Editors & IDEs
     # claude-desktop  # Claude desktop — verify package name: nix search nixpkgs claude-desktop
+    zed-editor
 
     # Development
     python3
