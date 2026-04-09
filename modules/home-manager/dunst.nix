@@ -1,7 +1,11 @@
 # modules/home-manager/dunst.nix
 #
 # Dunst notification daemon — Tokyo Night theme.
-{ ... }: {
+{ pkgs, ... }:
+let
+  notificationSound = "${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/message-new-instant.oga";
+in
+{
   services.dunst = {
     enable = true;
     settings = {
@@ -46,6 +50,11 @@
         mouse_left_click = "close_current";
         mouse_middle_click = "do_action, close_current";
         mouse_right_click = "close_all";
+      };
+
+      play_sound = {
+        summary = "*";
+        script = "${pkgs.pulseaudio}/bin/paplay ${notificationSound}";
       };
 
       urgency_low = {

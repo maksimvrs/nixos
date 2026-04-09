@@ -50,5 +50,9 @@
     # Media
     kdePackages.gwenview  # image viewer (KDE)
     shared-mime-info   # MIME type database
+
+    # Notification sounds
+    sound-theme-freedesktop
+    pulseaudio  # paplay for dunst notification sounds
   ];
 }
