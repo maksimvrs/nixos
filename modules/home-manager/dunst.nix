@@ -3,7 +3,9 @@
 # Dunst notification daemon — Tokyo Night theme.
 { pkgs, ... }:
 let
-  notificationSound = "${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/message-new-instant.oga";
+  notificationSound = pkgs.writeShellScript "dunst-notification-sound" ''
+    ${pkgs.pulseaudio}/bin/paplay ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/message.oga
+  '';
 in
 {
   services.dunst = {
@@ -54,7 +56,7 @@ in
 
       play_sound = {
         summary = "*";
-        script = "${pkgs.pulseaudio}/bin/paplay ${notificationSound}";
+        script = toString notificationSound;
       };
 
       urgency_low = {
