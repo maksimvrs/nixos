@@ -32,5 +32,6 @@
     networkmanagerapplet   # nm-applet for systray
     noto-fonts-color-emoji # emoji in status bar
     wl-clipboard           # Wayland clipboard
+    glow                   # markdown renderer for keybindings help (mod+/)
   ];
 }

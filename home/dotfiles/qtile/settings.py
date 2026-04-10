@@ -32,6 +32,7 @@ floating_layout = layout.Floating(
         Match(wm_class="nm-connection-editor"),
         Match(wm_class=".nm-connection-editor-wrapped"),
         Match(title="nmtui"),
+        Match(title="keybindings"),
     ],
     **layout_theme,
 )

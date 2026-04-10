@@ -58,10 +58,13 @@ def autostart():
         )
 
 
+FIXED_SIZE_TITLES = {"nmtui", "keybindings"}
+
+
 @hook.subscribe.client_new
-def force_nmtui_size(client):
-    """Force nmtui to a fixed size every time it opens."""
-    if client.name == "nmtui":
+def force_fixed_size(client):
+    """Force certain floating windows to a fixed size every time they open."""
+    if client.name in FIXED_SIZE_TITLES:
         resize_and_center(client, client.qtile.current_screen)
 
 

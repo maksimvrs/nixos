@@ -33,6 +33,7 @@ ENGLISH_TO_RUSSIAN = {
     "v": "Cyrillic_em",     "b": "Cyrillic_i",     "n": "Cyrillic_te",
     "m": "Cyrillic_softsign",
 }
+RUSSIAN_KEYSYMS = frozenset(ENGLISH_TO_RUSSIAN.values())
 
 keys = [
     # ── Window focus ──────────────────────────────────────────────────
@@ -69,6 +70,12 @@ keys = [
 
     # ── Network ───────────────────────────────────────────────────────
     Key([MOD], "n", lazy.spawn("kitty --title nmtui -e nmtui"), desc="Network settings"),
+
+    # ── Help ──────────────────────────────────────────────────────────
+    Key([MOD], "slash",
+        lazy.spawn("kitty --title keybindings -e bash -c "
+                   "'glow -p <(python3 ~/.config/qtile/gen_keybindings.py)'"),
+        desc="Show keybindings"),
 
     # ── Screenshot (grim + slurp) ─────────────────────────────────────
     Key([], "Print",
