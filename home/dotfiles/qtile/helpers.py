@@ -51,6 +51,48 @@ def lock_screen(qtile):
 
     threading.Thread(target=_wait, daemon=True).start()
 
+
+# ── Power Menu ──────────────────────────────────────────────────────────
+
+POWER_MENU_ENTRIES = (
+    "󰐥  Shutdown",
+    "󰜉  Reboot",
+    "󰌾  Lock",
+    "󰍃  Logout",
+)
+
+
+def power_menu(qtile):
+    """Show a wofi dmenu power menu and dispatch the chosen action."""
+    import os
+    import threading
+
+    def _run():
+        result = subprocess.run(
+            [
+                "wofi", "--dmenu",
+                "--prompt", "Power",
+                "--width", "320",
+                "--height", "260",
+            ],
+            input="\n".join(POWER_MENU_ENTRIES),
+            capture_output=True,
+            text=True,
+        )
+        choice = result.stdout.strip()
+        if not choice:
+            return
+        if "Shutdown" in choice:
+            subprocess.Popen(["systemctl", "poweroff"])
+        elif "Reboot" in choice:
+            subprocess.Popen(["systemctl", "reboot"])
+        elif "Lock" in choice:
+            lock_screen(qtile)
+        elif "Logout" in choice:
+            subprocess.Popen(["loginctl", "terminate-user", os.environ["USER"]])
+
+    threading.Thread(target=_run, daemon=True).start()
+
 POWER_PROFILES = ["power-saver", "balanced", "performance"]
 POWER_PROFILE_ICONS = {
     "power-saver": "🔋",

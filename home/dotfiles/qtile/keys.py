@@ -8,6 +8,7 @@ from helpers import (
     brightness_up,
     lock_screen,
     mic_mute,
+    power_menu,
     power_profile_cycle,
     toggle_floating_centered,
     volume_down,
@@ -61,7 +62,7 @@ keys = [
     # ── Launch ────────────────────────────────────────────────────────
     Key([MOD], "Return", lazy.spawn(TERMINAL), desc="Terminal"),
     Key([MOD], "space", lazy.spawn("wofi --show drun"), desc="Launcher"),
-    Key([MOD], "d", lazy.spawn("wofi --show drun"), desc="Launcher"),
+    Key([MOD], "d", lazy.function(power_menu), desc="Power menu"),
 
     # ── Clipboard ─────────────────────────────────────────────────────
     Key([MOD], "v", lazy.spawn("copyq toggle"), desc="Clipboard history"),
