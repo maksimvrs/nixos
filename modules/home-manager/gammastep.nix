@@ -1,14 +1,11 @@
 # modules/home-manager/gammastep.nix
 #
 # Gammastep — automatic color temperature adjustment (Wayland-native).
-# Uses manual coordinates from variables.nix; geoclue2 is unreliable since
-# Mozilla Location Service shutdown (2024).
-{ variables, ... }: {
+# Location is determined automatically via GeoClue2.
+{ ... }: {
   services.gammastep = {
     enable = true;
-    provider = "manual";
-    latitude = variables.latitude;
-    longitude = variables.longitude;
+    provider = "geoclue2";
     temperature = {
       day = 6500;
       night = 3500;
