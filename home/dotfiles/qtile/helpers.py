@@ -26,6 +26,37 @@ def toggle_floating_centered(qtile):
         win.toggle_floating()
         resize_and_center(win, qtile.current_screen)
 
+
+# ── Resize (floating-aware) ───────────────────────────────────────────────
+
+FLOATING_RESIZE_STEP = 40
+
+_TILED_RESIZE = {
+    "left":  "shrink_main",
+    "right": "grow_main",
+    "down":  "grow",
+    "up":    "shrink",
+}
+
+_FLOATING_RESIZE_DELTAS = {
+    "left":  (-FLOATING_RESIZE_STEP, 0),
+    "right": (FLOATING_RESIZE_STEP, 0),
+    "up":    (0, -FLOATING_RESIZE_STEP),
+    "down":  (0, FLOATING_RESIZE_STEP),
+}
+
+
+def resize_focused(qtile, direction):
+    """Resize the focused window — dispatches to floating or layout resize."""
+    win = qtile.current_window
+    if not win:
+        return
+    if win.floating:
+        dw, dh = _FLOATING_RESIZE_DELTAS[direction]
+        win.resize_floating(dw, dh)
+    else:
+        getattr(qtile.current_layout, _TILED_RESIZE[direction])()
+
 import subprocess
 
 NOTIFICATION_TIMEOUT = "1500"

@@ -10,6 +10,7 @@ from helpers import (
     mic_mute,
     power_menu,
     power_profile_cycle,
+    resize_focused,
     toggle_floating_centered,
     volume_down,
     volume_mute,
@@ -49,11 +50,11 @@ keys = [
     Key([MOD, "shift"], "k", lazy.layout.shuffle_up(), desc="Move up"),
 
     # ── Resize windows ────────────────────────────────────────────────
-    Key([MOD, "control"], "h", lazy.layout.shrink_main(), desc="Resize left"),
-    Key([MOD, "control"], "l", lazy.layout.grow_main(), desc="Resize right"),
-    Key([MOD, "control"], "j", lazy.layout.grow(), desc="Resize down"),
-    Key([MOD, "control"], "k", lazy.layout.shrink(), desc="Resize up"),
-    Key([MOD], "equal", lazy.layout.normalize(), desc="Reset sizes"),
+    Key([MOD, "control"], "h", lazy.function(resize_focused, "left"),  desc="Resize left"),
+    Key([MOD, "control"], "l", lazy.function(resize_focused, "right"), desc="Resize right"),
+    Key([MOD, "control"], "j", lazy.function(resize_focused, "down"),  desc="Resize down"),
+    Key([MOD, "control"], "k", lazy.function(resize_focused, "up"),    desc="Resize up"),
+    Key([MOD], "equal", lazy.layout.reset(), desc="Reset sizes"),
 
     # ── Layouts ───────────────────────────────────────────────────────
     Key([MOD], "Tab", lazy.next_layout(), desc="Next layout"),
