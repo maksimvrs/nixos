@@ -31,8 +31,16 @@
     wlr.enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
-  # portal-wlr only activates for "sway" — must masquerade
-  environment.sessionVariables.XDG_CURRENT_DESKTOP = "sway";
+  environment.sessionVariables = {
+    # portal-wlr only activates for "sway" — must masquerade
+    XDG_CURRENT_DESKTOP = "sway";
+    # Force Qt apps (KDE/kded6/dolphin/okular/ark/gwenview) to use the
+    # Wayland platform plugin. Without this, DBus-activated Qt processes
+    # (notably kded6) don't see WAYLAND_DISPLAY, try xcb, fail to connect
+    # to a display and crash — which breaks file opening in Dolphin/KIO
+    # and, transitively, in Nautilus since its default handlers are Qt apps.
+    QT_QPA_PLATFORM = "wayland;xcb";
+  };
 
   # Touchpad & mouse
   services.libinput = {
