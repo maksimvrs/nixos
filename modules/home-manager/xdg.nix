@@ -4,10 +4,13 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = let
-      browser = "zen-beta.desktop";
-      editor  = "nvim.desktop";
-      viewer  = "org.kde.gwenview.desktop";
-      files   = "org.gnome.Nautilus.desktop";
+      browser  = "zen-beta.desktop";
+      editor   = "dev.zed.Zed.desktop";
+      viewer   = "org.kde.gwenview.desktop";
+      files    = "org.gnome.Nautilus.desktop";
+      archives = "org.kde.ark.desktop";
+      pdf      = "okularApplication_pdf.desktop";
+      media    = "vlc.desktop";
     in {
       # Images
       "image/png"      = viewer;
@@ -47,18 +50,39 @@
       "application/javascript"  = editor;
 
       # PDF
-      "application/pdf" = browser;
+      "application/pdf" = pdf;
 
       # File manager
       "inode/directory" = files;
 
       # Archives
-      "application/zip"              = files;
-      "application/x-tar"            = files;
-      "application/gzip"             = files;
-      "application/x-compressed-tar" = files;
-      "application/x-7z-compressed"  = files;
-      "application/x-rar"            = files;
+      "application/zip"              = archives;
+      "application/x-tar"            = archives;
+      "application/gzip"             = archives;
+      "application/x-compressed-tar" = archives;
+      "application/x-7z-compressed"  = archives;
+      "application/x-rar"            = archives;
+      "application/x-bzip2"          = archives;
+      "application/x-xz"             = archives;
+
+      # Video
+      "video/mp4"        = media;
+      "video/x-matroska" = media;
+      "video/webm"       = media;
+      "video/quicktime"  = media;
+      "video/x-msvideo"  = media;
+      "video/mpeg"       = media;
+      "video/ogg"        = media;
+
+      # Audio
+      "audio/mpeg"   = media;
+      "audio/mp4"    = media;
+      "audio/flac"   = media;
+      "audio/ogg"    = media;
+      "audio/x-wav"  = media;
+      "audio/x-flac" = media;
+      "audio/opus"   = media;
+      "audio/webm"   = media;
     };
   };
 }

@@ -50,6 +50,7 @@
 
     # Media
     kdePackages.gwenview  # image viewer (KDE)
+    vlc                # video/audio player
     shared-mime-info   # MIME type database
 
     # Notifications
