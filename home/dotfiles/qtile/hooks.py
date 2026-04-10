@@ -24,6 +24,26 @@ if not hasattr(Core, '_original_handle_keyboard_key'):
 @hook.subscribe.startup_once
 def autostart():
     """Start background services once on first login."""
+    # Export session env vars into the systemd user manager and D-Bus
+    # activation environment so user services (gammastep, etc.) can reach
+    # the Wayland socket, then activate graphical-session.target — qtile
+    # does not do this on its own, unlike sway/hyprland.
+    session_vars = [
+        "DISPLAY",
+        "WAYLAND_DISPLAY",
+        "XAUTHORITY",
+        "XDG_CURRENT_DESKTOP",
+        "XDG_SESSION_TYPE",
+    ]
+    subprocess.run(
+        ["dbus-update-activation-environment", "--systemd", *session_vars],
+        check=False,
+    )
+    subprocess.run(
+        ["systemctl", "--user", "start", "qtile-session.target"],
+        check=False,
+    )
+
     apps = [
         ["swaybg", "-i", os.path.expanduser("~/.config/qtile/wallpaper.jpg"), "-m", "fill"],
         ["dunst"],

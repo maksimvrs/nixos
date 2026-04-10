@@ -9,6 +9,19 @@
     recursive = true;
   };
 
+  # Compositor-specific systemd target. qtile's autostart hook starts this
+  # target, which in turn activates graphical-session.target (via BindsTo).
+  # Without this, user services like gammastep never get triggered, since
+  # graphical-session.target refuses manual start.
+  systemd.user.targets.qtile-session = {
+    Unit = {
+      Description = "qtile compositor session";
+      BindsTo = [ "graphical-session.target" ];
+      Wants = [ "graphical-session-pre.target" ];
+      After = [ "graphical-session-pre.target" ];
+    };
+  };
+
   home.packages = with pkgs; [
     # Utilities used by qtile keybindings / bar
     brightnessctl          # brightness control (XF86 keys)
