@@ -3,6 +3,9 @@
   username    = "maksim";
   hostname    = "maksim-pc";
   timezone    = "Asia/Ho_Chi_Minh";
+  # Location for gammastep (sunrise/sunset calculation). Da Nang, Vietnam.
+  latitude    = 16.0544;
+  longitude   = 108.2022;
   gitName      = "Maksim Vorontsov";
   gitEmail     = "social.maksim.vrs@gmail.com";
   gitZeustrackEmail = "maksim.vorontsov@zemomedia.com";
