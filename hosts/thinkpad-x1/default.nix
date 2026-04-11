@@ -12,6 +12,7 @@
     ../../modules/nixos/docker.nix
     ../../modules/nixos/keyboard.nix
     ../../modules/nixos/ollama.nix
+    ./audio-quirks.nix
   ];
 
   system.stateVersion = variables.stateVersion;
