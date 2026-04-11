@@ -23,6 +23,7 @@
     ripgrep
     fd
     nh
+    go-task
     fastfetch
     httpie
 

@@ -1,0 +1,122 @@
+# Taskfile for NixOS configuration
+# Docs: https://taskfile.dev
+#
+# Run `task` to see all available tasks.
+version: '3'
+
+vars:
+  FLAKE: '{{.TASKFILE_DIR}}'
+  HOST: maksim-pc
+
+tasks:
+  default:
+    desc: List available tasks
+    cmds:
+      - task --list
+    silent: true
+
+  # --- Rebuild (via nh) ---------------------------------------------------
+
+  switch:
+    desc: Rebuild and activate new NixOS generation (via nh)
+    cmds:
+      - nh os switch {{.FLAKE}} -H {{.HOST}}
+
+  boot:
+    desc: Build new generation and activate on next boot
+    cmds:
+      - nh os boot {{.FLAKE}} -H {{.HOST}}
+
+  test:
+    desc: Build and activate without adding a boot entry
+    cmds:
+      - nh os test {{.FLAKE}} -H {{.HOST}}
+
+  build:
+    desc: Build configuration without activating
+    cmds:
+      - nh os build {{.FLAKE}} -H {{.HOST}}
+
+  dry:
+    desc: Dry-run the switch to preview the diff
+    cmds:
+      - nh os build {{.FLAKE}} -H {{.HOST}} --dry
+
+  # --- Flake management ---------------------------------------------------
+
+  update:
+    desc: Update all flake inputs
+    cmds:
+      - nix flake update --flake {{.FLAKE}}
+
+  update-input:
+    desc: 'Update a single flake input, e.g.: task update-input -- nixpkgs'
+    cmds:
+      - nix flake update {{.CLI_ARGS}} --flake {{.FLAKE}}
+
+  check:
+    desc: Evaluate flake and run its checks
+    cmds:
+      - nix flake check {{.FLAKE}}
+
+  show:
+    desc: Show flake outputs
+    cmds:
+      - nix flake show {{.FLAKE}}
+
+  metadata:
+    desc: Show flake metadata
+    cmds:
+      - nix flake metadata {{.FLAKE}}
+
+  repl:
+    desc: Open nix repl with this flake loaded
+    cmds:
+      - nix repl --expr 'builtins.getFlake "{{.FLAKE}}"'
+
+  # --- Hygiene ------------------------------------------------------------
+
+  fmt:
+    desc: Format all Nix files with nixfmt-rfc-style
+    cmds:
+      - fd -e nix -X nix run nixpkgs#nixfmt-rfc-style --
+
+  lint:
+    desc: Lint Nix files with statix
+    cmds:
+      - nix run nixpkgs#statix -- check {{.FLAKE}}
+
+  dead:
+    desc: Find dead (unused) Nix code with deadnix
+    cmds:
+      - nix run nixpkgs#deadnix -- --no-lambda-pattern-names {{.FLAKE}}
+
+  # --- Garbage collection & generations -----------------------------------
+
+  clean:
+    desc: Garbage collect old generations (keep last 5, younger than 7 days)
+    cmds:
+      - nh clean all --keep 5 --keep-since 7d
+
+  clean-dry:
+    desc: Preview what garbage collection would remove
+    cmds:
+      - nh clean all --keep 5 --keep-since 7d --dry
+
+  generations:
+    desc: List NixOS system generations
+    cmds:
+      - nix profile history --profile /nix/var/nix/profiles/system
+
+  rollback:
+    desc: Rollback to previous NixOS generation (activates immediately)
+    cmds:
+      - sudo nixos-rebuild switch --rollback --flake {{.FLAKE}}#{{.HOST}}
+
+  # --- Convenience --------------------------------------------------------
+
+  up:
+    desc: Update inputs, then rebuild and switch
+    cmds:
+      - task: update
+      - task: switch
