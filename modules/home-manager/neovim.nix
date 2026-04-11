@@ -10,6 +10,8 @@ in
   programs.neovim = {
     enable = true;
     withNodeJs = true;
+    withPython3 = false;
+    withRuby = false;
     extraPackages = with pkgs; [
       gcc
     ];
