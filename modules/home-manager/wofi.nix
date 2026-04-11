@@ -1,7 +1,8 @@
 # modules/home-manager/wofi.nix
 #
 # Wofi — Wayland-native application launcher, Tokyo Night theme.
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = [ pkgs.wofi ];
 
   xdg.configFile."wofi/config".text = ''

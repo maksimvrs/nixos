@@ -1,5 +1,6 @@
 # modules/home-manager/zen-browser.nix
-{ firefoxAddons, ... }: {
+{ firefoxAddons, ... }:
+{
   programs.zen-browser = {
     enable = true;
     profiles.default = {

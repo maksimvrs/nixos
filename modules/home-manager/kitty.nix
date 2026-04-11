@@ -1,5 +1,6 @@
 # modules/home-manager/kitty.nix
-{ ... }: {
+{ ... }:
+{
   programs.kitty = {
     enable = true;
     shellIntegration.enableZshIntegration = true;
@@ -8,14 +9,14 @@
       size = 12;
     };
     settings = {
-      window_padding_width    = 8;
-      scrollback_lines        = 10000;
-      enable_audio_bell       = true;
+      window_padding_width = 8;
+      scrollback_lines = 10000;
+      enable_audio_bell = true;
       confirm_os_window_close = 0;
     };
     themeFile = "Nord";
 
-    keybindings = {};
+    keybindings = { };
 
     extraConfig = ''
       map ctrl+shift+с copy_to_clipboard

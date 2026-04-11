@@ -1,5 +1,6 @@
 # modules/home-manager/opencode.nix
-{ pkgs, variables, ... }: {
+{ pkgs, variables, ... }:
+{
   home.packages = [ pkgs.opencode ];
 
   xdg.configFile."opencode/opencode.json".text = builtins.toJSON {

@@ -5,7 +5,8 @@ let
     name = "treesitter-parsers";
     paths = pkgs.vimPlugins.nvim-treesitter.withAllGrammars.dependencies;
   };
-in {
+in
+{
   programs.neovim = {
     enable = true;
     withNodeJs = true;

@@ -1,5 +1,6 @@
 # modules/nixos/fonts.nix
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
@@ -12,7 +13,7 @@
     fontconfig.defaultFonts = {
       monospace = [ "FiraCode Nerd Font" ];
       sansSerif = [ "Noto Sans" ];
-      serif     = [ "Noto Serif" ];
+      serif = [ "Noto Serif" ];
     };
   };
 }

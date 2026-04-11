@@ -30,7 +30,8 @@
 # manually (e.g. `wpctl set-profile ...`) and Auto-Mute re-enabled.
 # Bluetooth audio is a separate card and is unaffected.
 
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   environment.etc."wireplumber/wireplumber.conf.d/51-alc287-lock-profile.conf".text = ''
     monitor.alsa.rules = [
       {
@@ -52,10 +53,10 @@
 
   systemd.services.alc287-disable-auto-mute = {
     description = "Disable ALC287 HDA Auto-Mute (ThinkPad X1 Carbon Gen 11)";
-    wantedBy    = [ "multi-user.target" ];
-    after       = [ "systemd-modules-load.service" ];
+    wantedBy = [ "multi-user.target" ];
+    after = [ "systemd-modules-load.service" ];
     serviceConfig = {
-      Type            = "oneshot";
+      Type = "oneshot";
       RemainAfterExit = true;
     };
     # The control may not exist immediately after boot if the HDA card

@@ -1,5 +1,6 @@
 # modules/nixos/desktop.nix
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Make .desktop files and MIME types from all packages visible to all apps
   environment.pathsToLink = [
     "/share/applications"
@@ -51,14 +52,14 @@
 
   # PipeWire audio
   services.pipewire = {
-    enable            = true;
-    alsa.enable       = true;
+    enable = true;
+    alsa.enable = true;
     alsa.support32Bit = true;
-    pulse.enable      = true;
+    pulse.enable = true;
     wireplumber.enable = true; # explicit — default but stated for clarity
   };
   services.pulseaudio.enable = false;
-  security.rtkit.enable      = true;
+  security.rtkit.enable = true;
 
   # GeoClue2 — location provider for gammastep etc.
   services.geoclue2.enable = true;
@@ -79,7 +80,7 @@
   security.pam.services.gtklock.fprintAuth = true;
 
   # gtklock — Wayland screen locker
-  security.pam.services.gtklock = {};
+  security.pam.services.gtklock = { };
   environment.systemPackages = [ pkgs.gtklock ];
 
   # Power profiles (performance / balanced / power-saver)
@@ -87,7 +88,7 @@
 
   # Bluetooth — BlueDevil (KDE's native manager) is enabled by plasma6
   hardware.bluetooth = {
-    enable      = true;
+    enable = true;
     powerOnBoot = true;
   };
 }

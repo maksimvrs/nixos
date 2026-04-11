@@ -1,5 +1,6 @@
 # hosts/thinkpad-x1/default.nix
-{ variables, ... }: {
+{ variables, ... }:
+{
   imports = [
     ../../modules/nixos/boot.nix
     ../../modules/nixos/nix.nix

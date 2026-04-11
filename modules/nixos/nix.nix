@@ -1,9 +1,16 @@
 # modules/nixos/nix.nix
-{ variables, ... }: {
+{ variables, ... }:
+{
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      trusted-users = [ "root" variables.username ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      trusted-users = [
+        "root"
+        variables.username
+      ];
     };
     gc = {
       automatic = true;

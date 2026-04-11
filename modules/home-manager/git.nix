@@ -1,5 +1,6 @@
 # modules/home-manager/git.nix
-{ variables, ... }: {
+{ variables, ... }:
+{
   programs.delta = {
     enable = true;
     enableGitIntegration = true;
@@ -12,10 +13,10 @@
   programs.git = {
     enable = true;
     settings = {
-      user.name          = variables.gitName;
-      user.email         = variables.gitEmail;
+      user.name = variables.gitName;
+      user.email = variables.gitEmail;
       init.defaultBranch = "master";
-      pull.rebase        = true;
+      pull.rebase = true;
       merge.conflictstyle = "diff3";
     };
     includes = [

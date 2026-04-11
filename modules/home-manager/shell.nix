@@ -1,12 +1,18 @@
 # modules/home-manager/shell.nix
-{ variables, config, pkgs, ... }: {
+{
+  variables,
+  config,
+  pkgs,
+  ...
+}:
+{
   programs.zsh = {
-    enable            = true;
-    dotDir            = "${config.xdg.configHome}/zsh";
-    enableCompletion  = true;
+    enable = true;
+    dotDir = "${config.xdg.configHome}/zsh";
+    enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    autocd            = true;
+    autocd = true;
 
     shellAliases = {
       nix-switch = "sudo nixos-rebuild switch --flake /etc/nixos#${variables.hostname}";
@@ -14,9 +20,12 @@
     };
 
     oh-my-zsh = {
-      enable  = true;
-      plugins = [ "git" "fzf" ];
-      theme   = "robbyrussell";
+      enable = true;
+      plugins = [
+        "git"
+        "fzf"
+      ];
+      theme = "robbyrussell";
     };
 
     plugins = [
@@ -32,18 +41,18 @@
   };
 
   programs.direnv = {
-    enable                = true;
-    enableZshIntegration  = true;
-    nix-direnv.enable     = true;
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
   };
 
   home.packages = [ pkgs.zsh-completions ];
 
   home.sessionVariables = {
-    EDITOR        = "nvim";
-    VISUAL        = "nvim";
-    TERM          = "kitty";
-    BROWSER       = "zen-beta";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    TERM = "kitty";
+    BROWSER = "zen-beta";
     SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/gcr/ssh";
   };
 }

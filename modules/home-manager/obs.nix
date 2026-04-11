@@ -1,9 +1,10 @@
 # modules/home-manager/obs.nix
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.obs-studio = {
-    enable  = true;
+    enable = true;
     plugins = with pkgs.obs-studio-plugins; [
-      wlrobs                     # wlroots screen capture (qtile/sway)
+      wlrobs # wlroots screen capture (qtile/sway)
       obs-pipewire-audio-capture # PipeWire audio capture
     ];
   };

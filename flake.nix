@@ -23,37 +23,47 @@
     claude-code.url = "github:sadjow/claude-code-nix";
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, firefox-addons, claude-code, ... }:
-  let
-    system        = "x86_64-linux";
-    variables     = import ./hosts/thinkpad-x1/variables.nix;
-    firefoxAddons = firefox-addons.packages.${system};
-  in {
-    nixosConfigurations.${variables.hostname} = nixpkgs.lib.nixosSystem {
-      inherit system;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      zen-browser,
+      firefox-addons,
+      claude-code,
+      ...
+    }:
+    let
+      system = "x86_64-linux";
+      variables = import ./hosts/thinkpad-x1/variables.nix;
+      firefoxAddons = firefox-addons.packages.${system};
+    in
+    {
+      nixosConfigurations.${variables.hostname} = nixpkgs.lib.nixosSystem {
+        inherit system;
 
-      specialArgs = {
-        inherit variables;
+        specialArgs = {
+          inherit variables;
+        };
+
+        modules = [
+          { nixpkgs.overlays = [ claude-code.overlays.default ]; }
+
+          ./hosts/thinkpad-x1/default.nix
+          ./hosts/thinkpad-x1/hardware-configuration.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+            home-manager.sharedModules = [ zen-browser.homeModules.beta ];
+            home-manager.extraSpecialArgs = {
+              inherit variables firefoxAddons;
+            };
+            home-manager.users.${variables.username} = import ./home/maksim.nix;
+          }
+        ];
       };
-
-      modules = [
-        { nixpkgs.overlays = [ claude-code.overlays.default ]; }
-
-        ./hosts/thinkpad-x1/default.nix
-        ./hosts/thinkpad-x1/hardware-configuration.nix
-
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
-          home-manager.sharedModules = [ zen-browser.homeModules.beta ];
-          home-manager.extraSpecialArgs = {
-            inherit variables firefoxAddons;
-          };
-          home-manager.users.${variables.username} = import ./home/maksim.nix;
-        }
-      ];
     };
-  };
 }

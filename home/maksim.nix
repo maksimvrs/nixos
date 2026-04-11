@@ -1,5 +1,6 @@
 # home/maksim.nix
-{ variables, ... }: {
+{ variables, ... }:
+{
   imports = [
     ../modules/home-manager/packages.nix
     ../modules/home-manager/neovim.nix
@@ -20,9 +21,9 @@
   ];
 
   home = {
-    username      = variables.username;
+    username = variables.username;
     homeDirectory = "/home/${variables.username}";
-    stateVersion  = variables.stateVersion;
+    stateVersion = variables.stateVersion;
   };
 
   programs.home-manager.enable = true;

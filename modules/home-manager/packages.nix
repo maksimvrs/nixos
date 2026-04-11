@@ -1,5 +1,6 @@
 # modules/home-manager/packages.nix
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     # Editors & IDEs
     # claude-desktop  # Claude desktop — verify package name: nix search nixpkgs claude-desktop
@@ -50,13 +51,13 @@
     nautilus
 
     # Media
-    kdePackages.gwenview  # image viewer (KDE)
-    vlc                # video/audio player
-    shared-mime-info   # MIME type database
+    kdePackages.gwenview # image viewer (KDE)
+    vlc # video/audio player
+    shared-mime-info # MIME type database
 
     # Notifications
-    libnotify  # notify-send
+    libnotify # notify-send
     sound-theme-freedesktop
-    pulseaudio  # paplay for dunst notification sounds
+    pulseaudio # paplay for dunst notification sounds
   ];
 }
