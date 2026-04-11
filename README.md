@@ -42,14 +42,6 @@ cp /mnt/etc/nixos/hardware-configuration.nix hosts/<hostname>/
 nixos-install --flake .#<hostname>
 ```
 
-## Build ISO
-
-```bash
-nix build .#nixosConfigurations.iso.config.system.build.isoImage
-```
-
-ISO will be in `./result/iso/`. Includes full desktop with your config.
-
 ## Rebuild
 
 ```bash
