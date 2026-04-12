@@ -6,12 +6,25 @@
   ...
 }:
 let
+  aiPrompt = builtins.concatStringsSep " " [
+    "You generate shell commands for a NixOS system running zsh."
+    "Output ONLY the command. No explanation, no markdown, no backticks, no commentary."
+    "Rules:"
+    "- If a tool is not installed, use 'nix shell nixpkgs#<package> -c <command>' or 'nix run nixpkgs#<package> -- <args>' to run it ad-hoc."
+    "- Use coreutils/standard tools when possible."
+    "- Prefer simple pipelines over complex one-liners."
+    "- Use systemctl for services (systemd-based system)."
+    "- Package manager is nix, not apt/pacman/etc."
+    "- Current shell is zsh."
+    "- Current working directory:"
+  ];
+
   aiFunction = ''
     # Convert natural language to shell command via Claude Code, place into zsh input
     ai() {
       [[ -z "$*" ]] && echo "Usage: ai <description>" && return 1
       local result
-      result=$(claude -p "Convert this to a single shell command. Output ONLY the command, nothing else. No explanation, no markdown, no backticks. Query: $*" 2>/dev/null)
+      result=$(claude --model haiku -p --max-turns 3 "${aiPrompt} $PWD. Query: $*" 2>/dev/null)
       if [[ $? -eq 0 && -n "$result" ]]; then
         print -z "$result"
       else
