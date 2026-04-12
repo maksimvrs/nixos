@@ -1,6 +1,5 @@
 # modules/home-manager/kitty.nix
-{ ... }:
-{
+_: {
   programs.kitty = {
     enable = true;
     shellIntegration.enableZshIntegration = true;

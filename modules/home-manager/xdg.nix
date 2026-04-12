@@ -1,6 +1,5 @@
 # modules/home-manager/xdg.nix
-{ ... }:
-{
+_: {
   xdg.mime.enable = true;
   xdg.mimeApps = {
     enable = true;

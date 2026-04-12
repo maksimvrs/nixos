@@ -1,6 +1,5 @@
 # modules/home-manager/ssh.nix
-{ ... }:
-{
+_: {
   # SSH-агент управляется GNOME Keyring (разблокируется при логине через PAM).
   # Отдельный ssh-agent не нужен — GNOME Keyring предоставляет SSH_AUTH_SOCK.
   services.ssh-agent.enable = false;

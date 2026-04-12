@@ -34,48 +34,50 @@ let
   '';
 in
 {
-  programs.zsh = {
-    enable = true;
-    dotDir = "${config.xdg.configHome}/zsh";
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    autocd = true;
-
-    shellAliases = {
-      nix-switch = "sudo nixos-rebuild switch --flake /etc/nixos#${variables.hostname}";
-      oil = "nvim -c Oil";
-    };
-
-    oh-my-zsh = {
+  programs = {
+    zsh = {
       enable = true;
+      dotDir = "${config.xdg.configHome}/zsh";
+      enableCompletion = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+      autocd = true;
+
+      shellAliases = {
+        nix-switch = "sudo nixos-rebuild switch --flake /etc/nixos#${variables.hostname}";
+        oil = "nvim -c Oil";
+      };
+
+      oh-my-zsh = {
+        enable = true;
+        plugins = [
+          "git"
+          "fzf"
+        ];
+        theme = "robbyrussell";
+      };
+
+      initContent = ''
+        ${aiFunction}
+      '';
+
       plugins = [
-        "git"
-        "fzf"
+        {
+          name = "you-should-use";
+          src = "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use";
+        }
       ];
-      theme = "robbyrussell";
     };
 
-    initContent = ''
-      ${aiFunction}
-    '';
+    starship = {
+      enable = true;
+    };
 
-    plugins = [
-      {
-        name = "you-should-use";
-        src = "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use";
-      }
-    ];
-  };
-
-  programs.starship = {
-    enable = true;
-  };
-
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-    nix-direnv.enable = true;
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
   };
 
   home.packages = [ pkgs.zsh-completions ];

@@ -54,14 +54,16 @@
 
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "backup";
-            home-manager.sharedModules = [ zen-browser.homeModules.beta ];
-            home-manager.extraSpecialArgs = {
-              inherit variables firefoxAddons;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = "backup";
+              sharedModules = [ zen-browser.homeModules.beta ];
+              extraSpecialArgs = {
+                inherit variables firefoxAddons;
+              };
+              users.${variables.username} = import ./home/maksim.nix;
             };
-            home-manager.users.${variables.username} = import ./home/maksim.nix;
           }
         ];
       };

@@ -21,9 +21,9 @@
   ];
 
   home = {
-    username = variables.username;
+    inherit (variables) username;
     homeDirectory = "/home/${variables.username}";
-    stateVersion = variables.stateVersion;
+    inherit (variables) stateVersion;
   };
 
   programs.home-manager.enable = true;

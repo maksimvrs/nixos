@@ -2,8 +2,7 @@
 #
 # Gammastep — automatic color temperature adjustment (Wayland-native).
 # Location is determined automatically via GeoClue2.
-{ ... }:
-{
+_: {
   services.gammastep = {
     enable = true;
     provider = "geoclue2";

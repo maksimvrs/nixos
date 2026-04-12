@@ -77,9 +77,9 @@ tasks:
   # --- Hygiene ------------------------------------------------------------
 
   fmt:
-    desc: Format all Nix files with nixfmt-rfc-style
+    desc: Format all Nix files with nixfmt
     cmds:
-      - fd -e nix -X nix run nixpkgs#nixfmt-rfc-style --
+      - fd -e nix -X nix run nixpkgs#nixfmt --
 
   lint:
     desc: Lint Nix files with statix
