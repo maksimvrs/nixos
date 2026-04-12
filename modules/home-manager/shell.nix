@@ -5,6 +5,21 @@
   pkgs,
   ...
 }:
+let
+  aiFunction = ''
+    # Convert natural language to shell command via Claude Code, place into zsh input
+    ai() {
+      [[ -z "$*" ]] && echo "Usage: ai <description>" && return 1
+      local result
+      result=$(claude -p "Convert this to a single shell command. Output ONLY the command, nothing else. No explanation, no markdown, no backticks. Query: $*" 2>/dev/null)
+      if [[ $? -eq 0 && -n "$result" ]]; then
+        print -z "$result"
+      else
+        echo "Failed to generate command"
+      fi
+    }
+  '';
+in
 {
   programs.zsh = {
     enable = true;
@@ -27,6 +42,10 @@
       ];
       theme = "robbyrussell";
     };
+
+    initContent = ''
+      ${aiFunction}
+    '';
 
     plugins = [
       {
