@@ -23,6 +23,7 @@
     tldr
     ripgrep
     fd
+    tree
     nh
     go-task
     fastfetch
