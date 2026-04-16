@@ -13,16 +13,23 @@ POWER_PROFILE_ICONS = {
     "performance": "🚀",
 }
 
+# Mapping from ACPI platform_profile names to powerprofilesctl names
+_ACPI_TO_PPD = {
+    "low-power": "power-saver",
+    "balanced": "balanced",
+    "performance": "performance",
+}
+
+_SYSFS_PROFILE = "/sys/firmware/acpi/platform_profile"
+
 
 def get_power_profile():
-    """Get current power profile name."""
+    """Get current power profile name (reads sysfs, no subprocess)."""
     try:
-        result = subprocess.run(
-            ("powerprofilesctl", "get"),
-            capture_output=True, text=True, timeout=2,
-        )
-        return result.stdout.strip()
-    except (subprocess.TimeoutExpired, Exception):
+        with open(_SYSFS_PROFILE) as f:
+            acpi_name = f.read().strip()
+        return _ACPI_TO_PPD.get(acpi_name, acpi_name)
+    except OSError:
         return ""
 
 
