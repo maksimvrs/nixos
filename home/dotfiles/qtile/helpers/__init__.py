@@ -9,7 +9,7 @@ from .audio import volume_down, volume_mute, volume_up
 from .brightness import brightness_down, brightness_up
 from .mic import mic_mute
 from .power_profile import POWER_PROFILE_ICONS, get_power_profile, power_profile_cycle
-from .session import lock_screen, power_menu
+from .session import lock_screen
 from .window import resize_and_center, resize_focused, toggle_floating_centered
 
 __all__ = [
@@ -19,7 +19,6 @@ __all__ = [
     "get_power_profile",
     "lock_screen",
     "mic_mute",
-    "power_menu",
     "power_profile_cycle",
     "resize_and_center",
     "resize_focused",

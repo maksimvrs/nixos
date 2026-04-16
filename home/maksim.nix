@@ -13,7 +13,7 @@
     ../modules/home-manager/claude.nix
     ../modules/home-manager/dunst.nix
     ../modules/home-manager/gammastep.nix
-    ../modules/home-manager/wofi.nix
+    ../modules/home-manager/walker.nix
     ../modules/home-manager/qtile.nix
     ../modules/home-manager/xdg.nix
     ../modules/home-manager/opencode.nix
