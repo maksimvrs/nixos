@@ -59,6 +59,7 @@ layout {
 prefer-no-csd
 
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "noctalia-shell"
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
