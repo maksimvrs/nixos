@@ -74,6 +74,7 @@
   programs = {
     xwayland.enable = true;
     ssh.startAgent = false; # SSH agent provided by GNOME Keyring
+    niri.enable = true;
   };
 
   # XDG portals — required for flameshot screen capture on Wayland
