@@ -21,6 +21,16 @@
     };
 
     claude-code.url = "github:sadjow/claude-code-nix";
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -31,6 +41,8 @@
       zen-browser,
       firefox-addons,
       claude-code,
+      niri,
+      noctalia,
       ...
     }:
     let
@@ -49,6 +61,8 @@
         modules = [
           { nixpkgs.overlays = [ claude-code.overlays.default ]; }
 
+          niri.nixosModules.niri
+
           ./hosts/thinkpad-x1/default.nix
           ./hosts/thinkpad-x1/hardware-configuration.nix
 
@@ -58,7 +72,10 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               backupFileExtension = "backup";
-              sharedModules = [ zen-browser.homeModules.beta ];
+              sharedModules = [
+                zen-browser.homeModules.beta
+                noctalia.homeModules.default
+              ];
               extraSpecialArgs = {
                 inherit variables firefoxAddons;
               };
