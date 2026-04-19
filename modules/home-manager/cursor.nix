@@ -9,7 +9,9 @@
         ms-python.python
         vscodevim.vim
       ];
-      userSettings = { };
+      userSettings = {
+        "workbench.colorTheme" = "Default Light Modern";
+      };
     };
   };
 }

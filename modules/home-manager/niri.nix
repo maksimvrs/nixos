@@ -1,11 +1,7 @@
 # modules/home-manager/niri.nix
 #
 # Declarative niri config via niri-flake homeModule.
-# Colors come from Stylix (config.lib.stylix.colors).
 { pkgs, config, ... }:
-let
-  colors = config.lib.stylix.colors;
-in
 {
   programs.niri.settings = {
     outputs."eDP-1".scale = 1;
@@ -38,17 +34,17 @@ in
       default-column-width = { proportion = 0.5; };
 
       focus-ring = {
-        width = 2;
-        active.color = "#${colors.base0E}";
-        inactive.color = "#${colors.base02}";
+        width = 4;
+        active.color = "#cba6f7";
+        inactive.color = "#45475a";
       };
 
       border = {
         enable = false;
         width = 4;
-        active.color = "#${colors.base0E}";
-        inactive.color = "#${colors.base02}";
-        urgent.color = "#${colors.base08}";
+        active.color = "#cba6f7";
+        inactive.color = "#45475a";
+        urgent.color = "#f38ba8";
       };
 
       shadow = {
@@ -91,6 +87,19 @@ in
           { app-id = "firefox$"; title = "^Picture-in-Picture$"; }
         ];
         open-floating = true;
+      }
+      {
+        matches = [
+          { app-id = "^com\\.github\\.hluk\\.copyq$"; }
+        ];
+        open-floating = true;
+      }
+      {
+        matches = [
+          { app-id = "^zen"; }
+          { app-id = "^dev\\.zed\\.Zed$"; }
+        ];
+        default-column-width = { proportion = 1.0; };
       }
     ];
 

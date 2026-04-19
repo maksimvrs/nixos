@@ -2,7 +2,7 @@
 #
 # Noctalia desktop shell — bar, notifications, widgets.
 # Enabled via the noctalia flake homeModule (added to sharedModules in flake.nix).
-{ lib, ... }: {
+_: {
   programs.noctalia-shell = {
     enable = true;
 
@@ -12,21 +12,13 @@
       fillMode = "crop";
     };
 
-    # Colors come from Stylix via targets.noctalia-shell.
     settings.colorSchemes = {
       useWallpaperColors = false;
       darkMode = true;
       syncGsettings = true;
     };
 
-    # Stylix owns app theming; Noctalia only colors its own bar.
-    settings.templates = {
-      enableUserTheming = false;
-      activeTemplates = [ ];
-    };
-
-    # mkForce on visual styles so our config wins over Stylix's noctalia-shell target.
-    settings.bar = (lib.mapAttrs (_: lib.mkForce) {
+    settings.bar = {
       barType = "floating";
       position = "top";
       density = "comfortable";
@@ -40,7 +32,7 @@
       widgetSpacing = 8;
       contentPadding = 4;
       displayMode = "always_visible";
-    }) // {
+
       widgets = {
         left = [
           { id = "Launcher"; }

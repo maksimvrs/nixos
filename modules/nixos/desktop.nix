@@ -79,15 +79,13 @@
   security = {
     rtkit.enable = true;
     pam.services = {
-      sddm = {
-        enableGnomeKeyring = true;
-        fprintAuth = true;
-      };
+      # No fprintAuth here: fingerprint login bypasses pam_unix → pam_gnome_keyring
+      # never gets the password → keyring stays locked and NetworkManager/browsers
+      # lose their saved secrets. Typing the password once at SDDM unlocks everything.
+      sddm.enableGnomeKeyring = true;
       sudo.fprintAuth = true;
       login.fprintAuth = true;
-      noctalia = {
-        fprintAuth = true;
-      };
+      noctalia.fprintAuth = true;
     };
   };
 

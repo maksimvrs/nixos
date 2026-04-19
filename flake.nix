@@ -31,11 +31,6 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -48,7 +43,6 @@
       claude-code,
       niri,
       noctalia,
-      stylix,
       ...
     }:
     let
@@ -81,7 +75,6 @@
               sharedModules = [
                 zen-browser.homeModules.beta
                 noctalia.homeModules.default
-                stylix.homeModules.stylix
               ];
               extraSpecialArgs = {
                 inherit variables firefoxAddons;
