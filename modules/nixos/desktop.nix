@@ -20,7 +20,6 @@
       # (see security.pam.services.noctalia below) instead of the default /etc/pam.d/login.
       NOCTALIA_PAM_SERVICE = "noctalia";
     };
-    systemPackages = [ pkgs.gtklock ];
   };
 
   services = {
@@ -29,16 +28,6 @@
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
-    };
-
-    # Qtile (Wayland session, selectable from SDDM)
-    xserver = {
-      windowManager.qtile = {
-        enable = true;
-        extraPackages = p: with p; [ qtile-extras ];
-      };
-      # Disable X11 — we only use Wayland
-      enable = false;
     };
 
     # Touchpad & mouse

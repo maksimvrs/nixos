@@ -11,10 +11,8 @@
     ../modules/home-manager/cursor.nix
     ../modules/home-manager/zen-browser.nix
     ../modules/home-manager/claude.nix
-    ../modules/home-manager/dunst.nix
     ../modules/home-manager/gammastep.nix
     ../modules/home-manager/walker.nix
-    ../modules/home-manager/qtile.nix
     ../modules/home-manager/niri.nix
     ../modules/home-manager/noctalia.nix
     ../modules/home-manager/stylix.nix

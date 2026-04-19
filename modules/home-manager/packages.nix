@@ -60,7 +60,5 @@
 
     # Notifications
     libnotify # notify-send
-    sound-theme-freedesktop
-    pulseaudio # paplay for dunst notification sounds
   ];
 }

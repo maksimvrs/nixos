@@ -4,7 +4,7 @@
   programs.obs-studio = {
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [
-      wlrobs # wlroots screen capture (qtile/sway)
+      wlrobs # wlroots screen capture
       obs-pipewire-audio-capture # PipeWire audio capture
     ];
   };
