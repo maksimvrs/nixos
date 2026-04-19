@@ -17,6 +17,7 @@
     ../modules/home-manager/qtile.nix
     ../modules/home-manager/niri.nix
     ../modules/home-manager/noctalia.nix
+    ../modules/home-manager/stylix.nix
     ../modules/home-manager/xdg.nix
     ../modules/home-manager/opencode.nix
     ../modules/home-manager/obs.nix

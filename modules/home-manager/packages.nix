@@ -14,7 +14,6 @@
     devenv
 
     # CLI essentials
-    btop
     fzf
     bat
     eza
@@ -50,6 +49,9 @@
 
     # File manager
     nautilus
+
+    # Clipboard manager
+    copyq
 
     # Media
     kdePackages.gwenview # image viewer (KDE)

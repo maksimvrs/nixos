@@ -16,6 +16,9 @@
       # to a display and crash — which breaks file opening in Dolphin/KIO
       # and, transitively, in Nautilus since its default handlers are Qt apps.
       QT_QPA_PLATFORM = "wayland;xcb";
+      # Noctalia lockscreen reads PAM config from /etc/pam.d/noctalia
+      # (see security.pam.services.noctalia below) instead of the default /etc/pam.d/login.
+      NOCTALIA_PAM_SERVICE = "noctalia";
     };
     systemPackages = [ pkgs.gtklock ];
   };
@@ -93,7 +96,7 @@
       };
       sudo.fprintAuth = true;
       login.fprintAuth = true;
-      gtklock = {
+      noctalia = {
         fprintAuth = true;
       };
     };

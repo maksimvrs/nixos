@@ -38,7 +38,7 @@
     [[entries]]
     text = "Lock"
     icon = "system-lock-screen"
-    actions = { "use" = "gtklock" }
+    actions = { "use" = "noctalia-shell ipc call lockScreen lock" }
 
     [[entries]]
     text = "Logout"
