@@ -10,6 +10,11 @@
     recursive = true;
   };
 
+  home.file."Pictures/Wallpapers" = {
+    source = ../../home/wallpapers;
+    recursive = true;
+  };
+
   home.packages = with pkgs; [
     xwayland-satellite # XWayland support for niri
   ];
