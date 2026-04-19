@@ -85,6 +85,7 @@
       {
         matches = [
           { app-id = "firefox$"; title = "^Picture-in-Picture$"; }
+          { app-id = "^zen"; title = "^Picture-in-Picture$"; }
         ];
         open-floating = true;
       }
@@ -96,10 +97,18 @@
       }
       {
         matches = [
-          { app-id = "^zen"; }
+          { app-id = "^zen"; title = "Zen Browser$"; }
           { app-id = "^dev\\.zed\\.Zed$"; }
         ];
         default-column-width = { proportion = 1.0; };
+      }
+      {
+        matches = [ { app-id = "^zen"; } ];
+        excludes = [
+          { title = "Zen Browser$"; }
+          { title = "^Picture-in-Picture$"; }
+        ];
+        open-floating = true;
       }
     ];
 
