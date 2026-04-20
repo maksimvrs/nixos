@@ -31,6 +31,11 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    niri-float-sticky = {
+      url = "github:probeldev/niri-float-sticky";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -43,6 +48,7 @@
       claude-code,
       niri,
       noctalia,
+      niri-float-sticky,
       ...
     }:
     let
@@ -59,7 +65,12 @@
         };
 
         modules = [
-          { nixpkgs.overlays = [ claude-code.overlays.default ]; }
+          {
+            nixpkgs.overlays = [
+              claude-code.overlays.default
+              (_: _: { niri-float-sticky = niri-float-sticky.packages.${system}.default; })
+            ];
+          }
 
           niri.nixosModules.niri
 

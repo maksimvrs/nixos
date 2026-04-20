@@ -6,6 +6,11 @@ _: {
   programs.noctalia-shell = {
     enable = true;
 
+    # Pin to the current schema version so Noctalia skips legacy migrations.
+    # Without this, Migration45 overrides bar.barType back to "simple" because
+    # it only honours the old boolean `bar.floating` key.
+    settings.settingsVersion = 59;
+
     settings.wallpaper = {
       enabled = true;
       directory = "~/Pictures/Wallpapers";

@@ -64,6 +64,7 @@
       { argv = [ "elephant" ]; }
       { argv = [ "walker" "--gapplication-service" ]; }
       { argv = [ "copyq" ]; }
+      { argv = [ "niri-float-sticky" "-title" "^Picture-in-Picture$" ]; }
     ];
 
     screenshot-path = "~/Pictures/Screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png";
@@ -88,6 +89,13 @@
           { app-id = "^zen"; title = "^Picture-in-Picture$"; }
         ];
         open-floating = true;
+        default-column-width = { fixed = 480; };
+        default-window-height = { fixed = 270; };
+        default-floating-position = {
+          x = 32;
+          y = 32;
+          relative-to = "top-right";
+        };
       }
       {
         matches = [
@@ -318,5 +326,6 @@
 
   home.packages = with pkgs; [
     xwayland-satellite
+    niri-float-sticky
   ];
 }
