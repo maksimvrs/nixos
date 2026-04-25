@@ -73,6 +73,10 @@ in
       enable = true;
     };
 
+    btop = {
+      enable = true;
+    };
+
     direnv = {
       enable = true;
       enableZshIntegration = true;

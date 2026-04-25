@@ -7,16 +7,13 @@
 
   services.walker = {
     enable = true;
-    systemd.enable = true;
+    systemd.enable = false;
 
     settings = {
       close_when_open = true;
       force_keyboard_focus = true;
     };
   };
-
-  systemd.user.services.walker.Service.Environment = "PATH=${pkgs.elephant}/bin";
-  systemd.user.services.walker.Unit.After = [ "elephant.service" ];
 
   xdg.configFile."elephant/desktopapplications.toml".text = ''
     history_when_empty = true
@@ -41,7 +38,7 @@
     [[entries]]
     text = "Lock"
     icon = "system-lock-screen"
-    actions = { "use" = "gtklock" }
+    actions = { "use" = "noctalia-shell ipc call lockScreen lock" }
 
     [[entries]]
     text = "Logout"
@@ -49,16 +46,4 @@
     actions = { "use" = "loginctl terminate-user $USER" }
   '';
 
-  systemd.user.services.elephant = {
-    Unit = {
-      Description = "Elephant - Data provider for Walker";
-      Before = [ "walker.service" ];
-    };
-    Install.WantedBy = [ "graphical-session.target" ];
-    Service = {
-      ExecStart = "${pkgs.elephant}/bin/elephant";
-      Restart = "on-failure";
-      Environment = "PATH=/run/current-system/sw/bin:/etc/profiles/per-user/maksim/bin";
-    };
-  };
 }

@@ -14,7 +14,6 @@
     devenv
 
     # CLI essentials
-    btop
     fzf
     bat
     eza
@@ -51,6 +50,9 @@
     # File manager
     nautilus
 
+    # Clipboard manager
+    copyq
+
     # Media
     kdePackages.gwenview # image viewer (KDE)
     vlc # video/audio player
@@ -58,7 +60,5 @@
 
     # Notifications
     libnotify # notify-send
-    sound-theme-freedesktop
-    pulseaudio # paplay for dunst notification sounds
   ];
 }

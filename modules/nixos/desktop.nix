@@ -16,8 +16,10 @@
       # to a display and crash — which breaks file opening in Dolphin/KIO
       # and, transitively, in Nautilus since its default handlers are Qt apps.
       QT_QPA_PLATFORM = "wayland;xcb";
+      # Noctalia lockscreen reads PAM config from /etc/pam.d/noctalia
+      # (see security.pam.services.noctalia below) instead of the default /etc/pam.d/login.
+      NOCTALIA_PAM_SERVICE = "noctalia";
     };
-    systemPackages = [ pkgs.gtklock ];
   };
 
   services = {
@@ -26,16 +28,6 @@
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
-    };
-
-    # Qtile (Wayland session, selectable from SDDM)
-    xserver = {
-      windowManager.qtile = {
-        enable = true;
-        extraPackages = p: with p; [ qtile-extras ];
-      };
-      # Disable X11 — we only use Wayland
-      enable = false;
     };
 
     # Touchpad & mouse
@@ -74,6 +66,7 @@
   programs = {
     xwayland.enable = true;
     ssh.startAgent = false; # SSH agent provided by GNOME Keyring
+    niri.enable = true;
   };
 
   # XDG portals — required for flameshot screen capture on Wayland
@@ -86,15 +79,13 @@
   security = {
     rtkit.enable = true;
     pam.services = {
-      sddm = {
-        enableGnomeKeyring = true;
-        fprintAuth = true;
-      };
+      # No fprintAuth here: fingerprint login bypasses pam_unix → pam_gnome_keyring
+      # never gets the password → keyring stays locked and NetworkManager/browsers
+      # lose their saved secrets. Typing the password once at SDDM unlocks everything.
+      sddm.enableGnomeKeyring = true;
       sudo.fprintAuth = true;
       login.fprintAuth = true;
-      gtklock = {
-        fprintAuth = true;
-      };
+      noctalia.fprintAuth = true;
     };
   };
 
